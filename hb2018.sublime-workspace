@@ -1,0 +1,513 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"query",
+				"querySelectorAll"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"fo",
+				"formData"
+			],
+			[
+				"remove",
+				"removeErrors"
+			],
+			[
+				"contain",
+				"container"
+			],
+			[
+				"class",
+				"classList"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"bra",
+				"border-radius"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"align",
+				"align-items"
+			],
+			[
+				"box-",
+				"box-shadow"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"fon",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 384.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"sass",
+				"SassBeautify"
+			]
+		],
+		"width": 609.0
+	},
+	"console":
+	{
+		"height": 138.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/leo/Projets/HitboxGameJam2018"
+	],
+	"file_history":
+	[
+		"/home/leo/Sites/leodesigaux.me/.env",
+		"/home/leo/.cache/kioexec/krun/16263_0/contentful.php",
+		"/home/leo/Sites/leodesigaux.me/config/contentful.php",
+		"/home/leo/.cache/kioexec/krun/513_0/contentful.php",
+		"/home/leo/.cache/kioexec/krun/5554_0/app.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/components/navbar.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/layout.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/labo.blade.php",
+		"/home/leo/.cache/kioexec/krun/10403_0/alexetmaxence.fr",
+		"/home/leo/.cache/kioexec/krun/10915_0/leoche.org",
+		"/home/leo/.cache/kioexec/krun/22594_0/ContentfulServiceProvider.php",
+		"/home/leo/.cache/kioexec/krun/29541_0/contentful.php",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/SandboxController.php",
+		"/home/leo/.cache/kioexec/krun/16451_0/layout.blade.php",
+		"/home/leo/.cache/kioexec/krun/15015_0/layout.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/realisations.blade.php",
+		"/home/leo/.i3/config",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/nanocars/package-lock.json",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_navbar.scss",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/node-js-getting-started/nanocars.html",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/node-js-getting-started/index.js",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/nanocars/nanocars.html",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/node-js-getting-started/package.json",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/nanocars/server.js",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/node-js-getting-started/jquery.js",
+		"/home/leo/Projets/jGraphics/README.MD",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/nanocars/index.html",
+		"/home/leo/Projets/jKonamiCode/README.MD",
+		"/home/leo/Bureau/README.MD",
+		"/home/leo/Sites/leodesigaux.me/public/sandbox/ludumdare/26/js/main.js",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/tools/_layout.scss",
+		"/home/leo/Projets/jKonamiCode/index.html",
+		"/home/leo/Projets/laravel-lpermissions/README.md",
+		"/home/leo/Sites/leodesigaux.me/public/ludumdare/28/index.html",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/ludumdare.blade.php",
+		"/home/leo/Sites/leodesigaux.me/routes/web.php",
+		"/home/leo/Sites/leodesigaux.me/public/ludumdare/28/js/main.js",
+		"/home/leo/Sites/leodesigaux.me/public/ludumdare/26/index.html",
+		"/home/leo/.inputrc",
+		"/home/leo/.config/sublime-text-3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/home/leo/.config/polybar/config",
+		"/home/leo/Sites/leodesigaux.me/.gitignore",
+		"/home/leo/Sites/leodesigaux.me/public/ludumdare",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/BlogController.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/post.blade.php",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/LabsController.php",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/ContentfulController.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_footer.scss",
+		"/home/leo/Sites/leodesigaux.me/app/helpers.php",
+		"/home/leo/Sites/leodesigaux.me/composer.json",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/realisations.html",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/main.scss",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/WorksController.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_landing.scss",
+		"/home/leo/Sites/leodesigaux.me/resources/views/realisations.blade.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_card-work.scss",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/labopost.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/index.blade.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_contact.scss",
+		"/home/leo/Sites/leodesigaux.me/resources/views/pages/contact.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/blog.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.config/polybar/config",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.i3/config",
+		"/home/leo/.config/compton.conf",
+		"/home/leo/Sites/leodesigaux.me/front/src/js/modules/filter.js",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_lab.scss",
+		"/home/leo/Sites/leodesigaux.me/front/src/js/main.js",
+		"/home/leo/.Xresources",
+		"/home/leo/.bashrc",
+		"/home/leo/.config/i3/config",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/views/pages/labiframe.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/labopost.blade.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/assets/sass/components/_labs.scss",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/views/pages/lab.blade.php",
+		"/home/leo/Images/colorer",
+		"/home/leo/Images/backgrounder",
+		"/home/leo/.config/rofi/config",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.config/fish/functions/fish_prompt.fish",
+		"/home/leo/.config/rofi/mytheme.rasi",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.extend.Xresources",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.xprofile",
+		"/home/leo/.profile",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/.Xresources",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Http/Controllers/LabController.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/assets/js/_lab.js",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/assets/js/app.js",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Helpers/functions.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/js/modules/contact.js",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/ContactController.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/components/email.blade.php",
+		"/home/leo/Sites/leodesigaux.me/.env.example",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_laptop.scss",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Mail/ContactMessage.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Http/Controllers/ContactController.php",
+		"/home/leo/Sites/leodesigaux.me/vendor/composer/autoload_classmap.php",
+		"/home/leo/Sites/leodesigaux.me/bootstrap/app.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/contact.blade.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/contact.html",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Middleware/ThrottleRequests.php",
+		"/home/leo/Sites/leodesigaux.me/front/node_modules/bulma/sass/utilities/initial-variables.sass",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/index.html",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/components/footer.html",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/lab.html",
+		"/home/leo/Sites/leodesigaux.me/front/package.json",
+		"/home/leo/Sites/leodesigaux.me/front/src/js/modules/hero.js",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/views/pages/articles.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/labo.blade.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/components/layout.blade.php",
+		"/home/leo/Sites/leodesigaux.me/public/lab.html",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/ExampleController.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/resources/views/pages/labs.blade.php",
+		"/home/leo/Sites/leodesigaux.me/app/Http/Controllers/Controller.php",
+		"/home/leo/Sites/leodesigaux.me/vendor/contentful/laravel/src/config/contentful.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Http/Controllers/BlogController.php",
+		"/home/leo/Sites/leodesigaux.me/vendor/contentful/laravel/src/ContentfulServiceProvider.php",
+		"/home/leo/Sites/leodesigaux.me/front/test",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/config/contentful.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/.env",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Http/Kernel.php",
+		"/run/media/leo/d418d747-078c-4950-81e6-0a3193e9cd06/home/leoche/Sites/leodesigaux.com/app/Http/Controllers/Controller.php",
+		"/home/leo/Sites/leodesigaux.me/resources/views/index.blade.php",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/components/navbar.html",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_card-lab.scss",
+		"/home/leo/Sites/leodesigaux.me/front/src/css/modules/_logo.scss",
+		"/home/leo/Sites/leodesigaux.me/front/src/html/components/header.html",
+		"/home/leo/Sites/leodesigaux.me/app/Providers/AppServiceProvider.php",
+		"/home/leo/Sites/leodesigaux.me/front/webpack.config.js",
+		"/home/leo/Sites/leodesigaux.me/public/index.html"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 115.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 128.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "hb2018.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"labsc",
+				"app/Http/Controllers/LabsController.php"
+			],
+			[
+				"sand",
+				"app/Http/Controllers/SandboxController.php"
+			],
+			[
+				"web",
+				"routes/web.php"
+			],
+			[
+				"labo",
+				"resources/views/pages/labo.blade.php"
+			],
+			[
+				"reali",
+				"resources/views/pages/realisations.blade.php"
+			],
+			[
+				"js/filter",
+				"front/src/js/modules/filter.js"
+			],
+			[
+				"_labs",
+				"front/src/css/modules/_card-lab.scss"
+			],
+			[
+				"layout",
+				"front/src/css/tools/_layout.scss"
+			],
+			[
+				"real",
+				"resources/views/pages/realisations.blade.php"
+			],
+			[
+				"labo.bl",
+				"resources/views/pages/labo.blade.php"
+			],
+			[
+				"workscon",
+				"app/Http/Controllers/WorksController.php"
+			],
+			[
+				"labs",
+				"app/Http/Controllers/LabsController.php"
+			],
+			[
+				"ld-ic",
+				"leodesigaux.me/front/src/css/tools/_ld-icons.scss"
+			],
+			[
+				"labopost",
+				"leodesigaux.me/resources/views/pages/labopost.blade.php"
+			],
+			[
+				"srcmain.js",
+				"leodesigaux.me/front/src/js/main.js"
+			],
+			[
+				"composer",
+				"leodesigaux.me/composer.json"
+			],
+			[
+				".env",
+				"leodesigaux.me/.env.example"
+			],
+			[
+				"",
+				"leodesigaux.me/app/Http/Controllers/ContactController.php"
+			],
+			[
+				"contact",
+				"leodesigaux.me/front/src/js/modules/contact.js"
+			],
+			[
+				"initial",
+				"leodesigaux.me/front/node_modules/bulma/sass/utilities/initial-variables.sass"
+			],
+			[
+				"index.html",
+				"leodesigaux.me/front/src/html/index.html"
+			],
+			[
+				"landing",
+				"leodesigaux.me/front/src/css/modules/_landing.scss"
+			],
+			[
+				"main",
+				"leodesigaux.me/front/src/js/main.js"
+			],
+			[
+				"lab.html",
+				"leodesigaux.me/front/src/html/lab.html"
+			],
+			[
+				"contact.b",
+				"resources/views/contact.blade.php"
+			],
+			[
+				"footer",
+				"front/src/html/components/footer.html"
+			],
+			[
+				"nav",
+				"front/src/html/components/navbar.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
