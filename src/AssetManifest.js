@@ -8,7 +8,7 @@ const AssetManifest = {
   fonts: {
     google: {
       families: [
-        'Open Sans:300,700',
+        'Open Sans:400,700',
       ],
     },
   },
