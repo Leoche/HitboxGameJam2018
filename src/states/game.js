@@ -4,21 +4,24 @@ class Game extends Phaser.State {
     super();
   }
   preload() {
-    this.load.tilemap('level1', '/assets/levels/level1.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     this.game.load.image('player', 'assets/images/player.png');
   }
   create() {
     console.log("Game!");
-    this.map = this.game.add.tilemap('level1', 64, 64);
-    this.map.addTilesetImage('terrain');
+    this.map = this.game.add.tilemap('forest', 64, 64);
+    this.map.addTilesetImage('terrain','terrain');
+    this.map.setCollisionBetween(0, 83);
 
-    this.layer = this.map.createLayer(0);
+    this.layer = this.map.createLayer("collider");
     this.layer.resizeWorld();
 
     this.player = game.add.sprite(104, 165, 'player', 1);
     this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
-    this.player.body.setSize(10, 14, 2, 1);
+    this.game.physics.arcade.gravity.y = 200;
+    this.player.body.setSize(58, 131, 30, 30);
+    this.player.body.collideWorldBounds = true;
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
 
@@ -48,6 +51,9 @@ class Game extends Phaser.State {
         this.player.body.velocity.y = 200;
         //player.play('down');
     }
+  }
+  render(){
+    this.game.debug.body(this.player);
   }
   _startGame () {
     this.game.state.start('game');
