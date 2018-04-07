@@ -6,7 +6,7 @@ class Menu extends Phaser.State {
 
  preload() {
 
-  this.game.load.image('background', 'assets/background.png');
+  this.game.load.image('background', 'assets/images/background.png');
   this.game.load.image('button','assets/images/bouton.png')
 }
 
