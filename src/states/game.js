@@ -14,6 +14,8 @@ class Game extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 600;
 
+    this.champis = [];
+
     this.map = this.game.add.tilemap('forest', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
 
@@ -28,8 +30,9 @@ class Game extends Phaser.State {
     for(var i in this.map.objects){
       var obj = this.map.objects[i][0];
       if (obj.name === "player") {
-        console.log('obj', obj.x);
         this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
+      } else if (obj.name === "champiv") {
+        this.champiv.push(new Champiv(game, obj.x, obj.y,));
       }
     }
 

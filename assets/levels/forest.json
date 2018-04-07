@@ -38,6 +38,30 @@
                  "width":0,
                  "x":800,
                  "y":968
+                }, 
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"champiv1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"champiv",
+                 "visible":true,
+                 "width":0,
+                 "x":960,
+                 "y":1024
+                }, 
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"ronce1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"ronce",
+                 "visible":true,
+                 "width":0,
+                 "x":1152,
+                 "y":1088
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -45,7 +69,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":4,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.1.4",
