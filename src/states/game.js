@@ -24,16 +24,21 @@ class Game extends Phaser.State {
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
+    var style = { font: "15px Arial", fill: "#ffffff", align: "center" };
+    this.text = game.add.text(15, 15, "Energy: 0", style);
+    this.text.fixedToCamera = true;
+    this.text.anchor.set(0);
   }
   update() {
     var that = this;
     this.player.onFloor = false;
     this.game.physics.arcade.collide(this.player, this.layer);
-    }
-    render(){
-      this.game.debug.body(this.player);
-    }
-    _startGame () {
-      this.game.state.start('game');
-    }
+    this.text.setText("Energy: " + this.player.energy);
   }
+  render(){
+    this.game.debug.body(this.player);
+  }
+  _startGame () {
+    this.game.state.start('game');
+  }
+}
