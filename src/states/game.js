@@ -54,7 +54,7 @@ class Game extends Phaser.State {
         this.physicsGroup.add(newChamp);
       }
       if (obj.type === "ronce"){
-        thorn = new Thorn(game, obj.x, obj.y);
+        var thorn = new Thorn(game, obj.x, obj.y);
         this.ronceGroup.add(thorn);
       }
     }
