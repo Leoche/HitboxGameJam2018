@@ -1,35 +1,25 @@
-# Phaser ES6 Boilerplate
+# Basic-Phaser-Boilerplate
+Basic Phaser boilerplate without dependencies.
 
-This is an ES6-based boilerplate for creating a multiplayer game using Phaser and Webpack. It is very opinionated as it strips out various unneeded components from Phaser and uses howler.js rather than Phaser Audio.
+## How to install
+Just git-clone/download this project in the folder you want and you are ready to go!
 
-The purpose of this repo is to be a starting point for creating a game. The idea is to copy the contents and then modify from there. Look at the usage below for instructions on how it all works.
+## How to use
+You'll need a HTTPServer to test the project (all Phaser projects need one).
 
-## Features
-* [Phaser-CE](https://github.com/photonstorm/phaser-ce) through npm (automatic custom build).
-* Boilerplate written in ES6 class structure.
-* Heavily commented and stripped down for most minimal build.
-* [Webpack](https://webpack.js.org/) + [Bublé](https://buble.surge.sh/guide/) + [PostCSS](http://postcss.org/).
-* [BrowserSync](https://browsersync.io/) for livereload during development.
-* [Stats.js](https://github.com/mrdoob/stats.js/) for displaying FPS/MS.
-* [phaser-manifest-loader](https://github.com/mattcolman/phaser-manifest-loader) for easy asset loading.
-* Separate builds for production and development.
+If you are using Linux/macOS:
 
-## Usage
+1. Open your terminal.
+2. `cd where_your_project_folder_is`.
+3. `python -m SimpleHTTPServer 8000`.
+4. The project will start running in the browser on `localhost:8000`.
 
-Clone the git repo.
+If you are using Windows, ~~good luck!~~ there are software to simulate HTTPServers;
+you'll have to look for them, though. Try [stackoverflow!](https://stackoverflow.com/questions/5050851/best-lightweight-web-server-only-static-content-for-windows).
 
-`git@github.com:goldfire/phaser-boilerplate.git`
+When you change the code, just refresh the browser page. Sometimes the browser will use
+the cached version of the page, so you'll have to refresh a couple of times more.
 
-Install the dependencies.
-
-`npm i`
-
-Start the development web server.
-
-`npm run dev`
-
-Access your project in the browser.
-
-`locahost:7777`
-
-Then start building your game!
+## Asset credits
+Dude: Phaser Mascot, https://phaser.io/
+Platform: Alucard (https://opengameart.org/content/platform-tiles-0), CC-BY
