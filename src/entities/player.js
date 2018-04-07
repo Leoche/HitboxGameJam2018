@@ -5,6 +5,8 @@ var Player = function (game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'player');
 
     this.anchor.setTo(0.5, 1);
+    this.realWidth = this.width;
+    this.realHeight = this.height;
 
     game.physics.enable(this, Phaser.Physics.ARCADE);
 
@@ -14,6 +16,7 @@ var Player = function (game, x, y) {
     this.body.mass = 20;
     this.body.bounce.set(.1);
     this.energy = 0;
+    this.facing = 1;
 
     game.add.existing(this);
 
@@ -23,16 +26,33 @@ var Player = function (game, x, y) {
   Player.prototype.constructor = Player;
 
   Player.prototype.update = function() {
+
+    this.width = this.realWidth + this.energy*5;
+    this.height = this.realHeight + this.energy*10;
+    if(this.facing === 0){
+      this.scale.x *= -1;
+    }
+
     if(game.input.keyboard.isDown(87)){ // W
-      console.log('test', this.body.onFloor())
+      this.energy += 2;
+      if(this.energy > 100){
+        this.energy = 100;
+      }
+    }else{
+      this.energy -= 1;
+      if(this.energy < 0){
+        this.energy = 0;
+      }
     }
     if(game.input.keyboard.isDown(37)){ // GAUCHE
       if (this.body.onFloor) this.body.velocity.x = -300;
       else this.body.velocity.x = -150;
+      this.facing = 0;
     }
     if(game.input.keyboard.isDown(39)){ // DROITE
       if (this.body.onFloor) this.body.velocity.x = 300;
       else this.body.velocity.x = 150;
+      this.facing = 1;
     }
     if(game.input.keyboard.isDown(38) && this.body.onFloor()){ // UP
       this.body.velocity.y = -500;
