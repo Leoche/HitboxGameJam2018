@@ -7,6 +7,7 @@ class Game extends Phaser.State {
     this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     this.game.load.image('player', 'assets/images/player.png');
+    this.game.load.spritesheet('champi', 'assets/spritesheets/sprite_walk_cycle.png', 128, 128, 6);
   }
   create() {
     console.log("Game!");
@@ -15,12 +16,22 @@ class Game extends Phaser.State {
 
     this.map = this.game.add.tilemap('forest', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
-    this.map.setCollisionBetween(0, 83);
 
-    this.layer = this.map.createLayer("collider");
+    this.layer = this.map.createLayer("terrain");
+    this.colliderlayer = this.map.createLayer("collider");
     this.layer.resizeWorld();
+    this.colliderlayer.resizeWorld();
+    this.colliderlayer.visible = false;
 
-    this.player = new Player(game, 304, 165);
+    this.map.setCollision(6, true, this.colliderlayer);
+
+    for(var i in this.map.objects){
+      var obj = this.map.objects[i][0];
+      if (obj.name === "player") {
+        console.log('obj', obj.x);
+        this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
+      }
+    }
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
@@ -30,9 +41,7 @@ class Game extends Phaser.State {
     this.text.anchor.set(0);
   }
   update() {
-    var that = this;
-    this.player.onFloor = false;
-    this.game.physics.arcade.collide(this.player, this.layer);
+    this.game.physics.arcade.collide(this.player, this.colliderlayer);
     this.text.setText("Energy: " + this.player.energy);
   }
   render(){
