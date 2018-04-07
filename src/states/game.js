@@ -8,16 +8,14 @@ class Game extends Phaser.State {
     this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     this.game.load.image('player', 'assets/images/player.png');
-    
-    // added assets
-    // this.game.load.image('thorn', 'assets/images/Ronces/ronce1Etat1.png')
-    //this.game.load.spritesheet('mummy','assets/spritesheets/momie.png', 37, 45, 18);// ?,y,?
+    this.game.load.spritesheet('champi', 'assets/spritesheets/sprite_walk_cycle.png', 128, 128, 6);
     this.game.load.spritesheet('thorn', 'assets/spritesheets/roncesFusionner02.png',64,64,6);
-
-
+    this.game.load.audio('jump', 'assets/audio/jump.wav');
+    this.game.load.audio('walk', 'assets/audio/walk.mp3')
   }
   create() {
     console.log("Game!");
+    
     this.background = this.game.add.image(0,0,'background');
     this.background.fixedToCamera = true;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -25,13 +23,33 @@ class Game extends Phaser.State {
 
     this.map = this.game.add.tilemap('forest', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
-    this.map.setCollisionBetween(0, 83);
 
-    this.layer = this.map.createLayer("collider");
+    this.layer = this.map.createLayer("terrain");
+    this.colliderlayer = this.map.createLayer("collider");
     this.layer.resizeWorld();
+    this.colliderlayer.resizeWorld();
+    this.colliderlayer.visible = false;
 
-    this.player = new Player(game, 304, 165);
+    this.map.setCollision(6, true, this.colliderlayer);
 
+    this.ronceGroup = this.game.add.group()
+
+    for(var i in this.map.objects){
+      var obj = this.map.objects[i][0];
+      if (obj.name === "player") {
+        console.log('obj', obj.x);
+        this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
+      }
+      if (obj.type === "ronce"){
+        thorn = new Thorn(game, obj.x, obj.y);
+        this.ronceGroup.add(thorn);
+      }
+    }
+
+    this.thorn = new Thorn(game, 500, 1088);
+    this.ronceGroup.add(this.thorn);
+    this.player.setRonces(this.ronceGroup)
+    
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
     this.paulsBullshit();
@@ -41,17 +59,15 @@ class Game extends Phaser.State {
     this.text.anchor.set(0);
   }
   update() {
-    var that = this;
-    this.player.onFloor = false;
-    this.game.physics.arcade.collide(this.player, this.layer);
+    this.game.physics.arcade.collide(this.player, this.colliderlayer);
     this.text.setText("Energy: " + this.player.energy);
   }
   paulsBullshit(){
 
     //this.anim.onStart.add(this.animationStarted, this);
-    this.thorn = this.game.add.sprite(1000,1152,'thorn',6);
-    this.animThorn = this.thorn.animations.add('grow');
-    this.animThorn.play(5,true);
+    //this.thorn = this.game.add.sprite(1000,1152,'thorn',6);
+    //this.animThorn = this.thorn.animations.add('grow');
+    //this.animThorn.play(5,true);
   }
   render(){
     this.game.debug.body(this.player);

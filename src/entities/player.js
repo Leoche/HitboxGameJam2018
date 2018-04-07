@@ -1,67 +1,106 @@
-var Player = function (game, x, y) {
+var Player = function (game, x, y, colliders) {
 
     //  We call the Phaser.Sprite passing in the game reference
     //  We're giving it a random X/Y position here, just for the sake of this demo - you could also pass the x/y in the constructor
-    Phaser.Sprite.call(this, game, x, y, 'player');
+    Phaser.Sprite.call(this, game, x, y, 'champi');
+    this.addSounds();
+
+ //   	
+
+
 
     this.anchor.setTo(0.5, 1);
     this.realWidth = this.width;
     this.realHeight = this.height;
+    this.animations.add('walk');
+    this.animations.play('walk', 10, true);
+    this.animations.stop();
 
     game.physics.enable(this, Phaser.Physics.ARCADE);
 
-    this.body.setSize(58, 131, 30, 30);
+    this.body.setSize(40, 105, 42, 20);
     this.body.collideWorldBounds = true;
     this.body.gravity.set(0, 180);
     this.body.mass = 20;
     this.body.bounce.set(.1);
     this.energy = 0;
     this.facing = 1;
+    this.colliders = colliders;
 
     game.add.existing(this);
 
-  };
+};
 
-  Player.prototype = Object.create(Phaser.Sprite.prototype);
-  Player.prototype.constructor = Player;
 
-  Player.prototype.update = function() {
+Player.prototype = Object.create(Phaser.Sprite.prototype);
+Player.prototype.constructor = Player;
+Player.prototype.setRonces = function(group){
+	this.ronceGroup = group;
+}
+Player.prototype.update = function() {
+	this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
+	this.body.updateBounds(this.scale.x, this.scale.y);
+	if(this.facing === 0){
+		this.scale.x *= -1;
+	}
 
-    this.width = this.realWidth + this.energy*5;
-    this.height = this.realHeight + this.energy*10;
-    if(this.facing === 0){
-      this.scale.x *= -1;
-    }
-
-    if(game.input.keyboard.isDown(87)){ // W
-      this.energy += 2;
-      if(this.energy > 100){
-        this.energy = 100;
-      }
+    if(game.input.keyboard.isDown(87) && this.body.onFloor()){ // W
+    	this.energy += 2;
+    	if(this.energy > 100){
+    		this.energy = 100;
+    	}
     }else{
-      this.energy -= 1;
-      if(this.energy < 0){
-        this.energy = 0;
-      }
+    	this.energy -= 0.5;
+    	if(this.energy < 0){
+    		this.energy = 0;
+    	}
     }
     if(game.input.keyboard.isDown(37)){ // GAUCHE
-      if (this.body.onFloor) this.body.velocity.x = -300;
-      else this.body.velocity.x = -150;
-      this.facing = 0;
+    	if (this.body.onFloor) this.body.velocity.x = -300;
+    	else this.body.velocity.x = -150;
+    	this.facing = 0;
     }
     if(game.input.keyboard.isDown(39)){ // DROITE
-      if (this.body.onFloor) this.body.velocity.x = 300;
-      else this.body.velocity.x = 150;
-      this.facing = 1;
+    	if (this.body.onFloor) this.body.velocity.x = 300;
+    	else this.body.velocity.x = 150;
+    	this.facing = 1;
     }
     if(game.input.keyboard.isDown(38) && this.body.onFloor()){ // UP
-      this.body.velocity.y = -500;
+    	this.body.velocity.y = -500;
+    	// this.fxJump.play('jump');
+    }
+    if(Math.abs(this.body.velocity.x) > 10 && this.body.onFloor()){
+    	this.animations.play('walk', 10, true);
+    	// this.fxWalk.play('walk');
+    }
+    else{
+    	if(this.body.onFloor()) this.frame = 3;
+    	else this.frame = 6;
     }
 
     // Velocity
     this.body.velocity.x *= 0.97;
     if (this.body.onFloor()) {
-      this.body.velocity.x *= 0.7;
+    	this.body.velocity.x *= 0.7;
     }
 
-  };
+    this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
+    
+    this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
+
+};
+Player.prototype.addSounds = function(){
+	this.fxJump = this.fx = game.add.audio('jump');
+	this.fxJump.allowMultiple = true;
+	this.fxJump.addMarker('jump', 0, 2);
+
+	this.fxWalk = this.fx = game.add.audio('walk');
+	this.fxWalk.addMarker('walk', 1, 10);
+}
+
+Player.prototype.collisionHandler = function (player, ronce) {
+	console.log("hit")
+    //  If the player collides with a chilli it gets eaten :)
+    ronce.kill();
+
+}
