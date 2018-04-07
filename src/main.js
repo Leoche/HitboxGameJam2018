@@ -20,4 +20,4 @@ game.state.add('game', new Game());
 // Finally, we have to start from somewhere, so let's choose a
 // state to begin our game!
 
-game.state.start('game');
+game.state.start('menu');
