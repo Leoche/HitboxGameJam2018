@@ -20,48 +20,20 @@ class Game extends Phaser.State {
     this.layer = this.map.createLayer("collider");
     this.layer.resizeWorld();
 
-    this.player = game.add.sprite(304, 165, 'player', 1);
-    this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
-
-    this.player.body.setSize(58, 131, 30, 30);
-    this.player.body.collideWorldBounds = true;
-    this.player.body.gravity.set(0, 180);
-    this.player.body.bounce.set(.1);
+    this.player = new Player(game, 304, 165);
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
-
-    this.cursors = game.input.keyboard.createCursorKeys();
   }
   update() {
-
+    var that = this;
+    this.player.onFloor = false;
     this.game.physics.arcade.collide(this.player, this.layer);
-    if (this.cursors.left.isDown)
-    {
-        this.player.body.velocity.x = -200;
-        //this.player.play('left');
     }
-    if (this.cursors.right.isDown)
-    {
-        this.player.body.velocity.x = 200;
-        //player.play('right');
+    render(){
+      this.game.debug.body(this.player);
     }
-    if (this.cursors.up.isDown)
-    {
-        this.player.body.velocity.y = -500;
-        //this.player.play('up');
+    _startGame () {
+      this.game.state.start('game');
     }
-    if (this.cursors.down.isDown)
-    {
-        this.player.body.velocity.y = 200;
-        //player.play('down');
-    }
-    this.player.body.velocity.x *= 0.97;
   }
-  render(){
-    this.game.debug.body(this.player);
-  }
-  _startGame () {
-    this.game.state.start('game');
-  }
-}
