@@ -114,7 +114,7 @@ class Game extends Phaser.State {
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
-    var style = { font: "15px Arial", fill: "#ffffff", align: "center" };
+    var style = { font: "0px Arial", fill: "#ffffff", align: "center" };
     this.text = game.add.text(15, 15, "Energy: 0", style);
     this.text.fixedToCamera = true;
     this.text.anchor.set(0);
@@ -125,9 +125,6 @@ class Game extends Phaser.State {
     var that = this;
     this.player.touchingChamp = false;
     this.game.physics.arcade.collide(this.player, this.colliderlayer);
-    this.game.physics.arcade.collide(this.player, this.physicsGroup, function () {
-      that.player.touchingChamp = true;
-    });
     this.bg1.tilePosition.set(-this.game.camera.x/4, -this.game.camera.y/4);
     this.bg2.tilePosition.set(-this.game.camera.x/3, -this.game.camera.y/3);
     this.bg3.tilePosition.set(-this.game.camera.x/2, -this.game.camera.y/2);
@@ -138,6 +135,9 @@ class Game extends Phaser.State {
     if(this.distanceBetweenPoints(this.player, this.end) < 64){
       game.state.start('game2');
     }
+    this.game.physics.arcade.collide(this.player, this.physicsGroup, function () {
+      that.player.touchingChamp = true;
+    });
   }
   handleLeech() {
     if(this.findNearest()){
@@ -145,7 +145,7 @@ class Game extends Phaser.State {
       nearest.tinter = true;
       if(game.input.keyboard.isDown(87)){
         nearest.interact();
-        if(nearest.type == "up") this.player.body.y = nearest.body.y - this.player.height + 2
+        //if(nearest.type == "up") this.player.body.y = nearest.body.y - this.player.height + 2
       }
     }
   }
