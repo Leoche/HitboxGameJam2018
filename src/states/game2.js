@@ -25,9 +25,16 @@ class Game2 extends Phaser.State {
 
     this.game.load.spritesheet('player', 'assets/images/SPRITE_CHAMPI.png', 128, 128, 50);
     this.game.load.spritesheet('thorn', 'assets/spritesheets/RoncesFusionner02.png',64,64,6);
-    this.game.load.audio('jump', 'assets/audio/jump.wav');
-    this.game.load.audio('walk', 'assets/audio/walk.mp3');
+    this.game.load.audio('jump', 'assets/audio/jump2.wav');
+    this.game.load.audio('walk', 'assets/audio/walknew.wav');
+    this.game.load.audio('ambiance1', 'assets/audio/ambiance1.wav');
+    this.game.load.audio('ambiance2', 'assets/audio/ambiance2.wav');
+    this.game.load.audio('echoPas','assets/audio/echopas.wav');
 
+
+  }
+
+  prout(){
 
   }
   create() {
@@ -35,6 +42,13 @@ class Game2 extends Phaser.State {
     this.objects = [];
     console.log("Game!");
 
+
+    this.fxAmb2 = this.game.add.audio('ambiance1');
+    this.fxAmb2.loop = true;
+
+    this.fxAmb2.play();
+
+    
 
     this.bg1 = this.game.add.tileSprite(0,0,2400,1000,'bg1');
     this.bg1.fixedToCamera = true;
