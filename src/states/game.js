@@ -5,7 +5,7 @@ class Game extends Phaser.State {
   }
   preload() {
     this.game.load.image('background', 'assets/images/background.png')
-    this.load.tilemap('level1', '/assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.tilemap('level1', '/assets/levels/PremierNiveau.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('level2', '/assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     game.load.image('particule', 'assets/images/particule.png');
@@ -55,21 +55,20 @@ class Game extends Phaser.State {
 
     this.layer = this.map.createLayer("terrain");
     this.colliderlayer = this.map.createLayer("collider");
+    this.layerover = this.map.createLayer("terrainover");
     this.layer.resizeWorld();
     this.colliderlayer.resizeWorld();
     this.colliderlayer.visible = false;
-    this.layerover = this.map.createLayer("terrainover");
     this.layerover.resizeWorld();
 
     this.map.setCollision(6, true, this.colliderlayer);
 
     this.end = {x:0, y:0};
-
     for(var i in this.map.objects.objects){
       var obj = this.map.objects.objects[i];
       if (obj.name === "player") {
         console.log('Added player');
-        this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
+        this.player = new Player(game, obj.x, obj.y, this.colliderlayer, this.champis);
       } else if (obj.type === "champiv") {
         console.log('Added champiv');
         var newChamp = new Champiv(game, obj.x, obj.y, obj.properties.sens, obj.properties.height, obj.properties.chapeau);
@@ -95,7 +94,7 @@ class Game extends Phaser.State {
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
-    var style = { font: "0px Arial", fill: "#ffffff", align: "center" };
+    var style = { font: "1px Arial", fill: "#ffffff", align: "center" };
     this.text = game.add.text(15, 15, "Energy: 0", style);
     this.text.fixedToCamera = true;
     this.text.anchor.set(0);
@@ -122,8 +121,12 @@ class Game extends Phaser.State {
     if(this.findNearest()){
       var nearest = this.findNearest()
       nearest.tinter = true;
-      if(game.input.keyboard.isDown(87)){
+      if(game.input.keyboard.isDown(77)){
         nearest.interact();
+        var that = this;
+        this.game.physics.arcade.collide(this.physicsGroup, this.player, function(){
+          that.player.body.y+=5;
+        });
         //if(nearest.type == "up") this.player.body.y = nearest.body.y - this.player.height + 2
       }
     }
@@ -145,11 +148,10 @@ class Game extends Phaser.State {
     return Math.abs(Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)));
   }
   render(){
+    return;
+    this.game.debug.body(this.player);
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }
-  }
-  _startGame () {
-    this.game.state.start('game');
   }
 }

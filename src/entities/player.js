@@ -1,5 +1,6 @@
 var Player = function (game, x, y, colliders) {
 
+
     //  We call the Phaser.Sprite passing in the game reference
     //  We're giving it a random X/Y position here, just for the sake of this demo - you could also pass the x/y in the constructor
     Phaser.Sprite.call(this, game, x, y, 'player');
@@ -41,8 +42,6 @@ var Player = function (game, x, y, colliders) {
   Player.prototype.update = function() {
 
     if(this.isAlive){
-      this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
-      this.body.updateBounds(this.scale.x, this.scale.y);
       if(this.facing === 0){
         this.scale.x *= -1;
       }
@@ -59,14 +58,14 @@ var Player = function (game, x, y, colliders) {
           this.energy = 0;
         }
       }
-      if(game.input.keyboard.isDown(37)){
+      if(game.input.keyboard.isDown(81)){
         this.key_gauche();
       }
-      if(game.input.keyboard.isDown(39)){
+      if(game.input.keyboard.isDown(68)){
         this.key_droite();
       }
       /* up*/
-      if(game.input.keyboard.isDown(38) && (this.body.onFloor() || this.touchingChamp)){
+      if(game.input.keyboard.isDown(90) && (this.body.onFloor() || this.touchingChamp)){
         this.body.velocity.y = -700;
 
       }
@@ -81,6 +80,7 @@ var Player = function (game, x, y, colliders) {
 
       this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
 
+      this.game.physics.arcade.collide(this, this.champisGroup, null, null, this);
       this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
     }
 
