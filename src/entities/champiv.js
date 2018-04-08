@@ -17,6 +17,9 @@ var Champiv = function (game, x, y, tigeHeight, chapeauWidth) {
     this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, 256 + this.chapeauCollisionOffsetX - this.chapeauWidth / 2, 290 - this.tigeHeight);
     this.body.allowGravity = false;
     this.body.immovable = true;
+    this.body.checkCollision.down = false;
+    this.body.checkCollision.right = false;
+    this.body.checkCollision.left = false;
 
     this.addChild(game.make.image(-18, -630, 'champ_tile1'));
     this.addChild(game.make.image(-256, -290, 'champ_top1'));
