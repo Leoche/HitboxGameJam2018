@@ -16,8 +16,9 @@ const game = new Phaser.Game(1200, 700, Phaser.AUTO, 'game_canvas');
 
 game.state.add('menu', new Menu());
 game.state.add('game', new Game());
+game.state.add('game2', new Game2());
 
 // Finally, we have to start from somewhere, so let's choose a
 // state to begin our game!
 
-game.state.start('game');
+game.state.start('game2');
