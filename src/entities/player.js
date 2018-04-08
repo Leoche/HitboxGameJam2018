@@ -165,35 +165,33 @@ Player.prototype.anim= function(){
 
 
         if(Math.abs(this.body.velocity.x) > 250){
-          if(this.animations.currentAnim.name != "run"){
-            console.log('de')
-            //this.animations.play('run', 10, true);
+            if(this.animations.currentAnim.name != "run"){
+                this.animations.play('run', 10, true);
+            }
+        }else{
+            if(this.animations.currentAnim.name != "walk"){
+                this.animations.play('walk', 10, true);
+            }
         }
-    }else{
-      if(this.animations.currentAnim.name != "walk"){
-        this.animations.play('walk', 10, true);
     }
-}
-}
-else{
-    this.fxWalk.stop('walk');
-    //this.fxEcho.play('echoPas');
-    if(this.body.onFloor() || this.touchingChamp){
-      if(this.animations.currentAnim.name != "idle"){
-        this.animations.play('idle');
+    else{
+        if(this.body.onFloor() || this.touchingChamp){
+            if(this.animations.currentAnim.name != "idle"){
+                this.animations.play('idle');
+            }
+        }
+        else{
+            if(this.animations.currentAnim.name != "jump"){
+                this.animations.play('jump');
+            }
+        }
     }
-}
-else{
-  if(this.animations.currentAnim.name != "jump"){
-    this.animations.play('jump');
-}
-}
+
 }
 
-      //console.log('this.animations.currentAnim.name', this.animations.currentAnim.name, this.body.onFloor())
-  }
-  Player.prototype.anyKeyPressed = function(keyboard){
-      if(keyboard.isDown(87) || keyboard.isDown(37)|| keyboard.isDown(37)|| keyboard.isDown(39) || keyboard.isDown(38) || keyboard.isDown(82)){
+
+Player.prototype.anyKeyPressed = function(keyboard){
+    if(keyboard.isDown(87) || keyboard.isDown(37)|| keyboard.isDown(37)|| keyboard.isDown(39) || keyboard.isDown(38) || keyboard.isDown(82)){
         return true;
     }
 }

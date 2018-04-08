@@ -1,4 +1,4 @@
-class Menu extends Phaser.State {
+class Credits extends Phaser.State {
 
   constructor() {
    super();

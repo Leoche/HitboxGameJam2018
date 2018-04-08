@@ -69,12 +69,14 @@
                  "properties":
                     {
                      "chapeau":"2",
-                     "height":"3"
+                     "height":"3",
+                     "sens":"up"
                     },
                  "propertytypes":
                     {
                      "chapeau":"string",
-                     "height":"string"
+                     "height":"string",
+                     "sens":"string"
                     },
                  "rotation":0,
                  "type":"champiv",
@@ -91,12 +93,14 @@
                  "properties":
                     {
                      "chapeau":"3",
-                     "height":"2"
+                     "height":"2",
+                     "sens":"up"
                     },
                  "propertytypes":
                     {
                      "chapeau":"string",
-                     "height":"string"
+                     "height":"string",
+                     "sens":"string"
                     },
                  "rotation":0,
                  "type":"champiv",
@@ -113,12 +117,14 @@
                  "properties":
                     {
                      "chapeau":"5",
-                     "height":"3"
+                     "height":"3",
+                     "sens":"down"
                     },
                  "propertytypes":
                     {
                      "chapeau":"string",
-                     "height":"string"
+                     "height":"string",
+                     "sens":"string"
                     },
                  "rotation":0,
                  "type":"champiv",
@@ -157,12 +163,14 @@
                  "properties":
                     {
                      "chapeau":"5",
-                     "height":"7"
+                     "height":"7",
+                     "sens":"down"
                     },
                  "propertytypes":
                     {
                      "chapeau":"string",
-                     "height":"string"
+                     "height":"string",
+                     "sens":"string"
                     },
                  "rotation":0,
                  "type":"champiv",
@@ -170,6 +178,18 @@
                  "width":0,
                  "x":416,
                  "y":1218
+                }, 
+                {
+                 "height":0,
+                 "id":29,
+                 "name":"end",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":3190,
+                 "y":1095
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -199,7 +219,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":29,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.4",
