@@ -1,27 +1,50 @@
-var Champiv = function (game, x, y, tigeHeight, chapeauWidth) {
+var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
+  Phaser.Sprite.call(this, game, x, y);
 
-    //  We call the Phaser.Sprite passing in the game reference
-    //  We're giving it a random X/Y position here, just for the sake of this demo - you could also pass the x/y in the constructor
-    Phaser.Sprite.call(this, game, x, y, 'champ_base1');
-
-    this.anchor.setTo(0.5, 1);
-    this.realWidth = this.width;
-    this.realHeight = this.height;
-    this.tigeHeight = tigeHeight*64;
-    this.tigeHeightMax = tigeHeight*64;
-    this.chapeauWidth = chapeauWidth*64 + 64;
-    this.chapeauCollisionOffsetX = 10
+  this.anchor.setTo(0.5, 1);
+  this.realWidth = this.width;
+  this.realHeight = this.height;
+  this.tigeHeight = tigeHeight*64;
+  this.tigeHeightMax = tigeHeight*64;
+  this.chapeauWidth = chapeauWidth*64 + 64;
+  this.chapeauWidthTile = chapeauWidth;
+  this.chapeauCollisionOffsetX = 5;
+  this.tick=0;
 
 
-    game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, 256 + this.chapeauCollisionOffsetX - this.chapeauWidth / 2, 290 - this.tigeHeight);
+  game.physics.enable(this, Phaser.Physics.ARCADE);
+    // this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, 256 + this.chapeauCollisionOffsetX - this.chapeauWidth / 2, 290 - this.tigeHeight);
+    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200- this.tigeHeight);
     this.body.allowGravity = false;
     this.body.immovable = true;
+    this.body.checkCollision.down = false;
+    this.body.checkCollision.right = false;
+    this.body.checkCollision.left = false;
 
-    this.addChild(game.make.image(-18, -630, 'champ_tile1'));
-    this.addChild(game.make.image(-256, -290, 'champ_top1'));
+    this.alpha = 1;
+    this.tinter = false;
+
+    this.base = this.game.make.group();
+    this.sprites = this.game.make.group();
+
+    this.base.add(game.make.image(-260, -530, 'champ_base_alive'));
+    this.sprites.add(game.make.image(-25, -140, 'champ_tile_alive'));
+    if(this.chapeauWidthTile < 3){
+      this.sprites.add(game.make.image(-265, -365, 'champ_top3_alive'));
+      this.sprites.add(game.make.image(-265, -365, 'veine_top3_alive'));
+    }
+    else if(this.chapeauWidthTile == 3){
+      this.sprites.add(game.make.image(-265, -365, 'champ_top1_alive'));
+      this.sprites.add(game.make.image(-265, -365, 'veine_top1_alive'));
+    }
+    else if(this.chapeauWidthTile > 3){
+      this.sprites.add(game.make.image(-265, -365, 'champ_top2_alive'));
+      this.sprites.add(game.make.image(-265, -365, 'veine_top2_alive'));
+    }
+    this.addChild(this.sprites);
+    this.addChild(this.base);
     this.cropRect = new Phaser.Rectangle(0, 0, 78, 20);
-    this.getChildAt(0).crop(this.cropRect);
+    this.sprites.getChildAt(0).crop(this.cropRect);
     game.add.existing(this);
   };
 
@@ -30,17 +53,27 @@ var Champiv = function (game, x, y, tigeHeight, chapeauWidth) {
 
   Champiv.prototype.update = function() {
     this.cropRect.height = this.tigeHeight;
-    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, 256 + this.chapeauCollisionOffsetX - this.chapeauWidth / 2, 290 - this.tigeHeight);
-    this.getChildAt(0).updateCrop();
-    this.getChildAt(0).y = -630 + 512 - this.tigeHeight;
-    this.getChildAt(1).y = -630 + 340 - this.tigeHeight;
-    if(game.input.keyboard.isDown(87)){
-      if(this.tigeHeight > 5) {
-        this.tigeHeight -= 5;
+    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200 - this.tigeHeight);
+
+    this.sprites.getChildAt(0).updateCrop();
+    this.sprites.getChildAt(0).y = -110 - this.tigeHeight;
+    this.sprites.getChildAt(1).y = -640 + 380 - this.tigeHeight;
+    this.sprites.getChildAt(2).y = -640 + 380 - this.tigeHeight;
+    this.bringToTop();
+    if(this.tigeHeight < this.tigeHeightMax) this.tigeHeight += .8;
+    if(this.tinter){
+      if(this.sprites.getChildAt(2).alpha != 1){
+        this.sprites.getChildAt(2).alpha+=.05;
+        if(this.sprites.getChildAt(2).alpha>1){
+          this.sprites.getChildAt(2).alpha = 1;
+        }
+      }else{
+          this.sprites.getChildAt(2).alpha = 0.6;
       }
     }else{
-      if(this.tigeHeight <  this.tigeHeightMax) {
-        this.tigeHeight += .2;
+      if(this.sprites.getChildAt(2).alpha != 0){
+        this.sprites.getChildAt(2).alpha-=.05;
+        if(this.sprites.getChildAt(2).alpha<0) this.sprites.getChildAt(2).alpha = 0;
       }
     }
   };
