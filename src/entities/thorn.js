@@ -2,8 +2,8 @@ var Thorn = function (game, x, y) {
 
     //  We call the Phaser.Sprite passing in the game reference
     //  We're giving it a random X/Y position here, just for the sake of this demo - you could also pass the x/y in the constructor
-    
-   
+
+
     Phaser.Sprite.call(this, game, x, y, 'thorn',6);
    	//this.thorn = this.game.add.sprite(1000,1152,'thorn',6);
     this.animThorn = this.animations.add('grow');
@@ -16,8 +16,8 @@ var Thorn = function (game, x, y) {
 
 
 
-    
-    
+
+
 
     game.add.existing(this);
 
@@ -28,6 +28,6 @@ var Thorn = function (game, x, y) {
 
   Thorn.prototype.update = function() {
 
-   
+
 
   };

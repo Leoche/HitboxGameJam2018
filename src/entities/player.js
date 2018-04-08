@@ -43,8 +43,6 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
 
     if(this.isAlive){
-      this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
-      this.body.updateBounds(this.scale.x, this.scale.y);
       if(this.facing === 0){
         this.scale.x *= -1;
     }
@@ -60,15 +58,15 @@ Player.prototype.update = function() {
         if(this.energy < 0){
             this.energy = 0;
         }
-    }
-    if(game.input.keyboard.isDown(37)){
+      }
+      if(game.input.keyboard.isDown(81)){
         this.key_gauche();
-    }
-    if(game.input.keyboard.isDown(39)){
+      }
+      if(game.input.keyboard.isDown(68)){
         this.key_droite();
-    }
-    /* up*/
-    if(game.input.keyboard.isDown(38) && (this.body.onFloor() || this.touchingChamp)){
+      }
+      /* up*/
+      if(game.input.keyboard.isDown(90) && (this.body.onFloor() || this.touchingChamp)){
         this.body.velocity.y = -700;
 
     }

@@ -14,7 +14,6 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
 
 
   game.physics.enable(this, Phaser.Physics.ARCADE);
-    // this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, 256 + this.chapeauCollisionOffsetX - this.chapeauWidth / 2, 290 - this.tigeHeight);
     this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 80, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200- this.tigeHeight);
     this.body.allowGravity = false;
     this.body.immovable = true;

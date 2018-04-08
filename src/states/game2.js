@@ -5,21 +5,21 @@ class Game2 extends Phaser.State {
   }
   preload() {
     this.game.load.image('background', 'assets/images/background.png')
-    this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.tilemap('level1', '/assets/levels/Deuxieme_Niveau.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('level2', '/assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     game.load.image('particule', 'assets/images/particule.png');
 
-    this.game.load.image('bg1', 'assets/images/DEAD_01.png');
-    this.game.load.image('bg2', 'assets/images/DEAD_02.png');
-    this.game.load.image('bg3', 'assets/images/DEAD_03.png');
+    this.game.load.image('bg1', 'assets/images/FONC_ALIVE_01.png');
+    this.game.load.image('bg2', 'assets/images/FONC_ALIVE_02.png');
+    this.game.load.image('bg3', 'assets/images/FONC_ALIVE_03.png');
 
-    this.game.load.image('champ_top1_alive', 'assets/images/champignons/CHAPEAU_DEAD_01.png');
-    this.game.load.image('champ_top2_alive', 'assets/images/champignons/CHAPEAU_DEAD_02.png');
-    this.game.load.image('champ_top3_alive', 'assets/images/champignons/CHAPEAU_DEAD_03.png');
-    this.game.load.image('veine_top1_alive', 'assets/images/champignons/VEINE_DEAD_01.png');
-    this.game.load.image('veine_top2_alive', 'assets/images/champignons/VEINE_DEAD_02.png');
-    this.game.load.image('veine_top3_alive', 'assets/images/champignons/VEINE_DEAD_03.png');
+    this.game.load.image('champ_top1_alive', 'assets/images/champignons/CHAPEAU_ALIVE_01.png');
+    this.game.load.image('champ_top2_alive', 'assets/images/champignons/CHAPEAU_ALIVE_02.png');
+    this.game.load.image('champ_top3_alive', 'assets/images/champignons/CHAPEAU_ALIVE_03.png');
+    this.game.load.image('veine_top1_alive', 'assets/images/champignons/VEINE_ALIVE_01.png');
+    this.game.load.image('veine_top2_alive', 'assets/images/champignons/VEINE_ALIVE_02.png');
+    this.game.load.image('veine_top3_alive', 'assets/images/champignons/VEINE_ALIVE_03.png');
     this.game.load.image('champ_tile_alive', 'assets/images/champignons/TILE_ALIVE.png');
     this.game.load.image('champ_base_alive', 'assets/images/champignons/BASE_ALIVE.png');
 
@@ -64,26 +64,25 @@ class Game2 extends Phaser.State {
     this.ronceGroup = this.game.add.physicsGroup()
     this.physicsGroup = game.add.physicsGroup();
 
-    this.map = this.game.add.tilemap('level2', 64, 64);
+    this.map = this.game.add.tilemap('level1', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
 
     this.layer = this.map.createLayer("terrain");
     this.colliderlayer = this.map.createLayer("collider");
+    this.layerover = this.map.createLayer("terrainover");
     this.layer.resizeWorld();
     this.colliderlayer.resizeWorld();
     this.colliderlayer.visible = false;
-    this.layerover = this.map.createLayer("terrainover");
     this.layerover.resizeWorld();
 
     this.map.setCollision(6, true, this.colliderlayer);
 
     this.end = {x:0, y:0};
-
     for(var i in this.map.objects.objects){
       var obj = this.map.objects.objects[i];
       if (obj.name === "player") {
         console.log('Added player');
-        this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
+        this.player = new Player(game, obj.x, obj.y, this.colliderlayer, this.champis);
       } else if (obj.type === "champiv") {
         console.log('Added champiv');
         var newChamp = new Champiv(game, obj.x, obj.y, obj.properties.sens, obj.properties.height, obj.properties.chapeau);
@@ -109,7 +108,7 @@ class Game2 extends Phaser.State {
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
-    var style = { font: "15px Arial", fill: "#ffffff", align: "center" };
+    var style = { font: "1px Arial", fill: "#ffffff", align: "center" };
     this.text = game.add.text(15, 15, "Energy: 0", style);
     this.text.fixedToCamera = true;
     this.text.anchor.set(0);
@@ -118,9 +117,6 @@ class Game2 extends Phaser.State {
     var that = this;
     this.player.touchingChamp = false;
     this.game.physics.arcade.collide(this.player, this.colliderlayer);
-    this.game.physics.arcade.collide(this.player, this.physicsGroup, function () {
-      that.player.touchingChamp = true;
-    });
     this.bg1.tilePosition.set(-this.game.camera.x/4, -this.game.camera.y/4);
     this.bg2.tilePosition.set(-this.game.camera.x/3, -this.game.camera.y/3);
     this.bg3.tilePosition.set(-this.game.camera.x/2, -this.game.camera.y/2);
@@ -128,17 +124,24 @@ class Game2 extends Phaser.State {
     // this.bg3.x= this.game.camera.x*0.1;
 
     this.handleLeech()
-
     if(this.distanceBetweenPoints(this.player, this.end) < 64){
-      game.state.start('end');
+      game.state.start('credits');
     }
+    this.game.physics.arcade.collide(this.player, this.physicsGroup, function () {
+      that.player.touchingChamp = true;
+    });
   }
   handleLeech() {
     if(this.findNearest()){
       var nearest = this.findNearest()
       nearest.tinter = true;
-      if(game.input.keyboard.isDown(87)){
+      if(game.input.keyboard.isDown(77)){
         nearest.interact();
+        var that = this;
+        this.game.physics.arcade.collide(this.physicsGroup, this.player, function(){
+          that.player.body.y+=5;
+        });
+        //if(nearest.type == "up") this.player.body.y = nearest.body.y - this.player.height + 2
       }
     }
   }
@@ -160,11 +163,9 @@ class Game2 extends Phaser.State {
   }
   render(){
     return;
+    this.game.debug.body(this.player);
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }
-  }
-  _startGame () {
-    this.game.state.start('game');
   }
 }
