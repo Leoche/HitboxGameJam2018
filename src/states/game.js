@@ -5,7 +5,7 @@ class Game extends Phaser.State {
   }
   preload() {
     this.game.load.image('background', 'assets/images/background.png')
-    this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.tilemap('level1', '/assets/levels/level1.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.tilemap('level2', '/assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     game.load.image('particule', 'assets/images/particule.png');
@@ -50,7 +50,7 @@ class Game extends Phaser.State {
     this.ronceGroup = this.game.add.physicsGroup()
     this.physicsGroup = game.add.physicsGroup();
 
-    this.map = this.game.add.tilemap('level2', 64, 64);
+    this.map = this.game.add.tilemap('level1', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
 
     this.layer = this.map.createLayer("terrain");
@@ -124,6 +124,7 @@ class Game extends Phaser.State {
       nearest.tinter = true;
       if(game.input.keyboard.isDown(87)){
         nearest.interact();
+        if(nearest.type == "up") this.player.body.y = nearest.body.y - this.player.height + 2
       }
     }
   }
@@ -144,7 +145,6 @@ class Game extends Phaser.State {
     return Math.abs(Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)));
   }
   render(){
-    return;
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }

@@ -23,7 +23,6 @@ var Player = function (game, x, y, colliders) {
     game.physics.enable(this, Phaser.Physics.ARCADE);
 
     this.body.setSize(40, 105, 42, 20);
-    this.body.collideWorldBounds = true;
     this.body.gravity.set(0, 180);
     this.body.mass = 20;
     this.body.bounce.set(.1);
