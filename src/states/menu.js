@@ -7,19 +7,30 @@ class Menu extends Phaser.State {
  preload() {
 
   this.game.load.image('background', 'assets/images/ILLU_START.png');
-  this.game.load.image('button','assets/images/bouton.png')
+ 
+  this.game.load.spritesheet('buttonCredits', 'assets/images/BOUTONS_CREDITS.png',256,256,2);
+  this.game.load.spritesheet('buttonPlay', 'assets/images/BOUTONS_START.png',256,256,2);
+
 }
 
 create() {
   console.log("Menu!");
+
+
+
   this.background = this.game.add.image(0,0,'background');
 
   //this.input.onDown.add(this._startGame, this);
-  this.button = this.game.add.button( 0 ,460,'button',this._startGame,this,2,1,0);
+  this.button = game.add.button(game.world.centerX +300, 600, 'buttonPlay', actionOnClick, this, 2, 1, 0);
+  this.button2 = game.add.button(game.world.centerX -500, 600, 'buttonCredits', actionOnClickCredits, this, 2, 1, 0);
+  this.button.scale.setTo(0.7,0.7);
+  this.button2.scale.setTo(0.8,0.8);
+    // button.onInputOver.add(over, this);
+    // button.onInputOut.add(out, this);
+    // button.onInputUp.add(up, this);
+  // this.button.position.x = this.game.world.centerX - (this.button.texture.width/2)
 
-  this.button.position.x = this.game.world.centerX - (this.button.texture.width/2)
-
-  this.button.input.useHandCursor = true;
+  // this.button.input.useHandCursor = true;
 
 }
 
@@ -30,4 +41,24 @@ customevent(){
 _startGame () {
  this.game.state.start('game');
 }
+}
+
+
+
+//button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
+
+
+
+
+
+
+function actionOnClick () {
+
+  this.game.state.start('game');
+
+}
+function actionOnClickCredits () {
+
+  this.game.state.start('credits');
+
 }
