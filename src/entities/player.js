@@ -47,7 +47,7 @@ Player.prototype.update = function() {
 
 
     if(this.isAlive){
-        
+            
 
         this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
         this.body.updateBounds(this.scale.x, this.scale.y);
@@ -56,7 +56,7 @@ Player.prototype.update = function() {
         }
         
         if(game.input.keyboard.isDown(87) && (this.body.onFloor())){ 
-
+            
             this.energy += 2;
             if(this.energy > 100){
                 this.energy = 100;

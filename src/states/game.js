@@ -89,6 +89,8 @@ class Game extends Phaser.State {
     this.text.anchor.set(0);
   }
   update() {
+    console.log(this.game.camera.x)
+    console.log(this.game.camera.y)
     var that = this;
     this.player.touchingChamp = false;
     this.game.physics.arcade.collide(this.player, this.colliderlayer);
@@ -112,7 +114,8 @@ class Game extends Phaser.State {
   animationStarted(){
 
   }
-   calculParallaxeDiffX(xpar,xnow){
+   calculParallaxeDiffX(xpar){
+    const xnow = this.camera.x
     const jeuX = this.map.x*64;
     const constX = 0;
     const xcam = jeuX-constX;
@@ -121,7 +124,8 @@ class Game extends Phaser.State {
     return -(deltaX*perCamX);
 
   }
-    calculParallaxeDiffY(ypar,ynow){
+    calculParallaxeDiffY(ypar){
+    const ynow = this.camera.y
     const jeuY = this.map.y*64;
     const constY = 0;
     const ycam = jeuY-constY;
