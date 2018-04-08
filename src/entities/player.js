@@ -49,9 +49,9 @@ Player.prototype.setRonces = function(group){
 
 
 Player.prototype.update = function() {
-//    console.log(game.input.keyboard.pressEvent)
 
-if(!this.isPaused){
+
+
     if(this.isAlive){
 
         this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
@@ -61,46 +61,45 @@ if(!this.isPaused){
         }
 
         if(game.input.keyboard.isDown(87) && (this.body.onFloor())){ 
-                // W
-                this.kew_w();
-            }
-            if(game.input.keyboard.isDown(37)){ 
-                // GAUCHE
-                this.key_gauche();
-            }
-            if(game.input.keyboard.isDown(39)){ 
-                // DROITE
-                this.key_droite();
-            }
-            if(game.input.keyboard.isDown(38) && (this.body.onFloor() || this.touchingChamp)){ 
-                // UP
-                this.body.velocity.y = -700;
-    	       // this.fxJump.play('jump');
-           }
 
-           this.walkAnim();
+            this.kew_w();
+        }
+        if(game.input.keyboard.isDown(37)){ 
 
-            // Velocity
-            this.body.velocity.x *= 0.97;
-            if (this.body.onFloor() || this.touchingChamp) {
-                this.body.velocity.x *= 0.7;
-            }
+            this.key_gauche();
+        }
+        if(game.input.keyboard.isDown(39)){ 
 
-            this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
+            this.key_droite();
+        }
+        /* up*/
+        if(game.input.keyboard.isDown(38) && (this.body.onFloor() || this.touchingChamp)){ 
 
-            this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
-        }else{
-            //if(this.animations.currentFrame)
+            this.body.velocity.y = -700;
+
         }
 
+        this.walkAnim();
 
-        if(game.input.keyboard.isDown(82)){ 
-            // GAUCHE
-            this.restart();
+        /*Velocity*/
+        this.body.velocity.x *= 0.97;
+        if (this.body.onFloor() || this.touchingChamp) {
+            this.body.velocity.x *= 0.7;
         }
-        //console.log(this);
 
+        this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
+
+        this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
     }
+
+
+    if(game.input.keyboard.isDown(82)){ 
+
+        this.restart();
+    }
+
+
+
 };
 
 
