@@ -63,6 +63,8 @@ class Game extends Phaser.State {
 
     this.map.setCollision(6, true, this.colliderlayer);
 
+    this.end = {x:0, y:0};
+
     for(var i in this.map.objects.objects){
       var obj = this.map.objects.objects[i];
       if (obj.name === "player") {
@@ -70,7 +72,7 @@ class Game extends Phaser.State {
         this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
       } else if (obj.type === "champiv") {
         console.log('Added champiv');
-        var newChamp = new Champiv(game, obj.x, obj.y, 0, obj.properties.height, obj.properties.chapeau);
+        var newChamp = new Champiv(game, obj.x, obj.y, obj.properties.sens, obj.properties.height, obj.properties.chapeau);
         this.champis.push(newChamp);
         this.objects.push(newChamp);
         this.physicsGroup.add(newChamp);
@@ -80,6 +82,11 @@ class Game extends Phaser.State {
         var newThorn = new Thorn(game, obj.x, obj.y);
         this.objects.push(newThorn);
         this.physicsGroup.add(newThorn);
+      }
+      else if (obj.name === "end"){
+        console.log('Added end');
+        this.end.x = obj.x;
+        this.end.y = obj.y;
       }
     }
 
@@ -107,14 +114,16 @@ class Game extends Phaser.State {
     // this.bg3.x= this.game.camera.x*0.1;
 
     this.handleLeech()
+    if(this.distanceBetweenPoints(this.player, this.end) < 64){
+      game.state.start('game2');
+    }
   }
   handleLeech() {
     if(this.findNearest()){
       var nearest = this.findNearest()
       nearest.tinter = true;
       if(game.input.keyboard.isDown(87)){
-        console.log('test')
-        if(nearest.tigeHeight > 5) nearest.tigeHeight -= 5;
+        nearest.interact();
       }
     }
   }

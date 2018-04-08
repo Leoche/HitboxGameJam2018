@@ -154,7 +154,6 @@ var Player = function (game, x, y, colliders) {
 
         if(Math.abs(this.body.velocity.x) > 250){
           if(this.animations.currentAnim.name != "run"){
-          console.log('de')
             this.animations.play('run', 10, true);
           }
         }else{
@@ -175,7 +174,6 @@ var Player = function (game, x, y, colliders) {
           }
         }
       }
-      console.log('this.animations.currentAnim.name', this.animations.currentAnim.name, this.body.onFloor())
     }
     Player.prototype.anyKeyPressed = function(keyboard){
       if(keyboard.isDown(87) || keyboard.isDown(37)|| keyboard.isDown(37)|| keyboard.isDown(39) || keyboard.isDown(38) || keyboard.isDown(82)){

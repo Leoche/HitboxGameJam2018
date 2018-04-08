@@ -2,6 +2,7 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
   Phaser.Sprite.call(this, game, x, y);
 
   this.anchor.setTo(0.5, 1);
+  this.type = type;
   this.realWidth = this.width;
   this.realHeight = this.height;
   this.tigeHeight = tigeHeight*64;
@@ -45,12 +46,19 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
     this.addChild(this.base);
     this.cropRect = new Phaser.Rectangle(0, 0, 78, 20);
     this.sprites.getChildAt(0).crop(this.cropRect);
+    this.interacting = false;
     game.add.existing(this);
   };
 
   Champiv.prototype = Object.create(Phaser.Sprite.prototype);
   Champiv.prototype.constructor = Champiv;
 
+  Champiv.prototype.interact = function() {
+    this.interacting = true;
+    if(this.type == "down" && this.tigeHeight > 64) this.tigeHeight -= 5;
+    if(this.type == "up" && this.tigeHeight < this.tigeHeightMax+this.tigeHeightMax) this.tigeHeight += 5;
+    console.log('this.type', this.type)
+  }
   Champiv.prototype.update = function() {
     this.cropRect.height = this.tigeHeight;
     this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 30, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200 - this.tigeHeight);
@@ -60,7 +68,10 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
     this.sprites.getChildAt(1).y = -640 + 380 - this.tigeHeight;
     this.sprites.getChildAt(2).y = -640 + 380 - this.tigeHeight;
     this.bringToTop();
-    if(this.tigeHeight < this.tigeHeightMax) this.tigeHeight += .8;
+    if(!this.interacting){
+      if(this.type == "up" && this.tigeHeight > this.tigeHeightMax) this.tigeHeight -= .8;
+      if(this.type == "down" && this.tigeHeight < this.tigeHeightMax) this.tigeHeight += .8;
+    }
     if(this.tinter){
       if(this.sprites.getChildAt(2).alpha != 1){
         this.sprites.getChildAt(2).alpha+=.05;
@@ -76,4 +87,5 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
         if(this.sprites.getChildAt(2).alpha<0) this.sprites.getChildAt(2).alpha = 0;
       }
     }
+    this.interacting = false;
   };
