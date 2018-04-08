@@ -64,30 +64,6 @@
                 },
                 {
                  "height":0,
-                 "id":43,
-                 "name":"Champ",
-                 "point":true,
-                 "properties":
-                    {
-                     "chapeau":"5",
-                     "height":"3",
-                     "sens":"down"
-                    },
-                 "propertytypes":
-                    {
-                     "chapeau":"string",
-                     "height":"string",
-                     "sens":"string"
-                    },
-                 "rotation":0,
-                 "type":"champiv",
-                 "visible":true,
-                 "width":0,
-                 "x":416.375,
-                 "y":1150.25
-                },
-                {
-                 "height":0,
                  "id":44,
                  "name":"player",
                  "point":true,

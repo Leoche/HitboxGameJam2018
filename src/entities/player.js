@@ -118,7 +118,7 @@ Player.prototype.addSounds = function(){
 
 Player.prototype.collisionHandler = function (player, ronce) {
 
-    //console.log("hit")
+    console.log("hit")
     this.isAlive = false;
     //  If the player collides with a chilli it gets eaten :)
     this.animations.play('die');

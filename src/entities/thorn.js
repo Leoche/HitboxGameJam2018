@@ -11,9 +11,9 @@ var Thorn = function (game, x, y) {
 
     game.physics.arcade.enable(this);
     this.body.allowGravity = false;
+    this.body.immovable = true;
 	//this.body.gravity.set(0, 0);
 	//this.body.mass = 0;
-
 
 
 

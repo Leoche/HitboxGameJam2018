@@ -10,18 +10,18 @@ class Game2 extends Phaser.State {
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
     game.load.image('particule', 'assets/images/particule.png');
 
-    this.game.load.image('bg1', 'assets/images/FONC_ALIVE_01.png');
-    this.game.load.image('bg2', 'assets/images/FONC_ALIVE_02.png');
-    this.game.load.image('bg3', 'assets/images/FONC_ALIVE_03.png');
+    this.game.load.image('bg1', 'assets/images/DEAD_01.png');
+    this.game.load.image('bg2', 'assets/images/DEAD_02.png');
+    this.game.load.image('bg3', 'assets/images/DEAD_03.png');
 
-    this.game.load.image('champ_top1_alive', 'assets/images/champignons/CHAPEAU_ALIVE_01.png');
-    this.game.load.image('champ_top2_alive', 'assets/images/champignons/CHAPEAU_ALIVE_02.png');
-    this.game.load.image('champ_top3_alive', 'assets/images/champignons/CHAPEAU_ALIVE_03.png');
-    this.game.load.image('veine_top1_alive', 'assets/images/champignons/VEINE_ALIVE_01.png');
-    this.game.load.image('veine_top2_alive', 'assets/images/champignons/VEINE_ALIVE_02.png');
-    this.game.load.image('veine_top3_alive', 'assets/images/champignons/VEINE_ALIVE_03.png');
-    this.game.load.image('champ_tile_alive', 'assets/images/champignons/TILE_ALIVE.png');
-    this.game.load.image('champ_base_alive', 'assets/images/champignons/BASE_ALIVE.png');
+    this.game.load.image('champ_top1_alive', 'assets/images/champignons/CHAPEAU_DEAD_01.png');
+    this.game.load.image('champ_top2_alive', 'assets/images/champignons/CHAPEAU_DEAD_02.png');
+    this.game.load.image('champ_top3_alive', 'assets/images/champignons/CHAPEAU_DEAD_03.png');
+    this.game.load.image('veine_top1_alive', 'assets/images/champignons/VEINE_DEAD_01.png');
+    this.game.load.image('veine_top2_alive', 'assets/images/champignons/VEINE_DEAD_02.png');
+    this.game.load.image('veine_top3_alive', 'assets/images/champignons/VEINE_DEAD_03.png');
+    this.game.load.image('champ_tile_alive', 'assets/images/champignons/TIGE_CHAMP_DEAD.png');
+    this.game.load.image('champ_base_alive', 'assets/images/champignons/BASE_CHAMP_DEAD.png');
 
     this.game.load.spritesheet('player', 'assets/images/SPRITE_CHAMPI.png', 128, 128, 50);
     this.game.load.spritesheet('thorn', 'assets/spritesheets/RoncesFusionner02.png',64,64,6);
