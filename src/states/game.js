@@ -11,7 +11,7 @@ class Game extends Phaser.State {
     this.game.load.image('champ_top1', 'assets/images/champ_01_top.png');
     this.game.load.image('champ_tile1', 'assets/images/champ_01_tile.png');
     this.game.load.image('champ_base1', 'assets/images/champ_01_base.png');
-    this.game.load.spritesheet('champi', 'assets/spritesheets/sprite_walk_cycle.png', 128, 128, 6);
+    this.game.load.spritesheet('champi', 'assets/spritesheets/SPRITE_CHAMPI.png', 128, 128, 50);
     this.game.load.spritesheet('thorn', 'assets/spritesheets/roncesFusionner02.png',64,64,6);
     this.game.load.audio('jump', 'assets/audio/jump.wav');
     this.game.load.audio('walk', 'assets/audio/walk.mp3')
@@ -45,7 +45,7 @@ class Game extends Phaser.State {
     for(var i in this.map.objects.objects){
       var obj = this.map.objects.objects[i];
       if (obj.name === "player") {
-        this.player = new Player(game, obj.x + 400, obj.y, this.colliderlayer);
+        this.player = new Player(game, obj.x , obj.y, this.colliderlayer);
         this.objects.push(this.player);
       } else if (obj.type === "champiv") {
         var newChamp = new Champiv(game, obj.x, obj.y);
@@ -90,7 +90,7 @@ class Game extends Phaser.State {
     //this.animThorn.play(5,true);
   }
   render(){
-    return;
+    
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }
