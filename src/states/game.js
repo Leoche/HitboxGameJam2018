@@ -101,4 +101,22 @@ class Game extends Phaser.State {
   animationStarted(){
 
   }
+   calculParallaxeDiffX(xpar,xnow){
+    const jeuX = this.map.x*64;
+    const constX = 0;
+    const xcam = jeuX-constX;
+    const deltaX = xpar-xcam;
+    const perCamX = 1-((xcam-xnow)/xcam); 
+    return -(deltaX*perCamX);
+
+  }
+    calculParallaxeDiffY(ypar,ynow){
+    const jeuY = this.map.y*64;
+    const constY = 0;
+    const ycam = jeuY-constY;
+    const deltaY = ypar-ycam;
+    const perCamY = 1-((ycam-ynow)/ycam); 
+    return -(deltaY*perCamY);
+
+  }
 }
