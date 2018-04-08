@@ -6,13 +6,17 @@ class Game extends Phaser.State {
   preload() {
     this.game.load.image('background', 'assets/images/background.png')
     this.load.tilemap('forest', '/assets/levels/forest.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.tilemap('level2', '/assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('terrain', '/assets/spritesheets/terrain.png');
-    this.game.load.image('player', 'assets/images/player.png');
+    this.game.load.image('bg1', 'assets/images/DEAD_01.png');
+    this.game.load.image('bg2', 'assets/images/DEAD_02.png');
+    this.game.load.image('bg3', 'assets/images/DEAD_03.png');
+    this.game.load.image('player', 'assets/spritesheets/sprite_walk_cycle.png');
     this.game.load.image('champ_top1', 'assets/images/champ_01_top.png');
     this.game.load.image('champ_tile1', 'assets/images/champ_01_tile.png');
     this.game.load.image('champ_base1', 'assets/images/champ_01_base.png');
     this.game.load.spritesheet('champi', 'assets/spritesheets/sprite_walk_cycle.png', 128, 128, 6);
-    this.game.load.spritesheet('thorn', 'assets/spritesheets/roncesFusionner02.png',64,64,6);
+    this.game.load.spritesheet('thorn', 'assets/spritesheets/RoncesFusionner02.png',64,64,6);
     this.game.load.audio('jump', 'assets/audio/jump.wav');
     this.game.load.audio('walk', 'assets/audio/walk.mp3')
   }
@@ -20,16 +24,23 @@ class Game extends Phaser.State {
     this.debug = true;
     this.objects = [];
     console.log("Game!");
-    
-    this.background = this.game.add.image(0,0,'background');
-    this.background.fixedToCamera = true;
+
+
+    this.bg1 = this.game.add.tileSprite(0,0,2400,1000,'bg1');
+    this.bg1.anchor.setTo(0.5);
+    this.bg2 = this.game.add.tileSprite(0,0,2400,1000,'bg2');
+    this.bg2.anchor.setTo(0.5);
+    this.bg3 = this.game.add.tileSprite(0,0,2400,1000,'bg3');
+    this.bg3.anchor.setTo(0.5);
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 600;
 
     this.champis = [];
+    this.ronceGroup = this.game.add.physicsGroup()
     this.physicsGroup = game.add.physicsGroup();
 
-    this.map = this.game.add.tilemap('forest', 64, 64);
+    this.map = this.game.add.tilemap('level2', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
 
     this.layer = this.map.createLayer("terrain");
@@ -38,33 +49,37 @@ class Game extends Phaser.State {
     this.colliderlayer.resizeWorld();
     this.colliderlayer.visible = false;
 
+
+    this.layerover = this.map.createLayer("terrainover");
+    this.layerover.resizeWorld();
+
     this.map.setCollision(6, true, this.colliderlayer);
     console.log('this.physicsGroup', this.physicsGroup);
 
-    this.ronceGroup = this.game.add.group()
     for(var i in this.map.objects.objects){
       var obj = this.map.objects.objects[i];
       if (obj.name === "player") {
-        this.player = new Player(game, obj.x + 400, obj.y, this.colliderlayer);
+        console.log('Added player');
+        this.player = new Player(game, obj.x, obj.y, this.colliderlayer);
         this.objects.push(this.player);
       } else if (obj.type === "champiv") {
-        var newChamp = new Champiv(game, obj.x, obj.y);
+        console.log('Added champiv');
+        var newChamp = new Champiv(game, obj.x, obj.y, obj.properties.height, obj.properties.chapeau);
         this.champis.push(newChamp);
         this.objects.push(newChamp);
         this.physicsGroup.add(newChamp);
       }
-      if (obj.type === "ronce"){
+      else if (obj.type === "ronce"){
+        console.log('Added ronce');
         var thorn = new Thorn(game, obj.x, obj.y);
+        this.objects.push(thorn);
         this.ronceGroup.add(thorn);
       }
     }
-    this.game.world.bringToTop(this.map);
-    this.game.world.bringToTop(this.player);
 
     this.thorn = new Thorn(game, 500, 1088);
     this.ronceGroup.add(this.thorn);
-    this.player.setRonces(this.ronceGroup)
-    
+
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
     this.paulsBullshit();
@@ -81,16 +96,11 @@ class Game extends Phaser.State {
       that.player.touchingChamp = true;
     });
     this.text.setText("Energy: " + this.player.energy);
-  }
-  paulsBullshit(){
-
-    //this.anim.onStart.add(this.animationStarted, this);
-    //this.thorn = this.game.add.sprite(1000,1152,'thorn',6);
-    //this.animThorn = this.thorn.animations.add('grow');
-    //this.animThorn.play(5,true);
+    this.bg1.x= this.game.camera.x*0.6;
+    this.bg2.x= this.game.camera.x*0.3;
+    this.bg3.x= this.game.camera.x*0.1;
   }
   render(){
-    return;
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }

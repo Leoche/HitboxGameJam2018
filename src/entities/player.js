@@ -3,6 +3,8 @@ var Player = function (game, x, y, colliders) {
     //  We call the Phaser.Sprite passing in the game reference
     //  We're giving it a random X/Y position here, just for the sake of this demo - you could also pass the x/y in the constructor
     Phaser.Sprite.call(this, game, x, y, 'champi');
+    this.oldx = x;
+    this.oldy = y;
     this.addSounds();
     this.game = game;
     this.anchor.setTo(0.5, 1);
@@ -31,9 +33,6 @@ var Player = function (game, x, y, colliders) {
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
-Player.prototype.setRonces = function(group){
-	this.ronceGroup = group;
-}
 Player.prototype.update = function() {
 	this.scale.setTo(1 + this.energy*.01, 1 + this.energy*.01)
 	this.body.updateBounds(this.scale.x, this.scale.y);
@@ -62,7 +61,7 @@ Player.prototype.update = function() {
     	else this.body.velocity.x = 150;
     	this.facing = 1;
     }
-    if(game.input.keyboard.isDown(38) && (this.body.onFloor() || this.touchingChamp)){ // UP
+    if(game.input.keyboard.isDown(38) && (true || this.body.onFloor() || this.touchingChamp)){ // UP
       this.body.velocity.y = -700;
     	// this.fxJump.play('jump');
     }
@@ -82,9 +81,10 @@ Player.prototype.update = function() {
     }
 
     this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
-    
-    this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
 
+    this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
+    this.oldx = this.body.x;
+    this.oldy = this.body.y;
 };
 Player.prototype.addSounds = function(){
 	this.fxJump = this.fx = game.add.audio('jump');
