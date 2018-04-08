@@ -11,11 +11,10 @@ class Game extends Phaser.State {
     this.game.load.image('bg1', 'assets/images/DEAD_01.png');
     this.game.load.image('bg2', 'assets/images/DEAD_02.png');
     this.game.load.image('bg3', 'assets/images/DEAD_03.png');
-    this.game.load.image('player', 'assets/spritesheets/sprite_walk_cycle.png');
     this.game.load.image('champ_top1', 'assets/images/champ_01_top.png');
     this.game.load.image('champ_tile1', 'assets/images/champ_01_tile.png');
     this.game.load.image('champ_base1', 'assets/images/champ_01_base.png');
-    this.game.load.spritesheet('champi', 'assets/spritesheets/SPRITE_CHAMPI.png', 128, 128, 50);
+    this.game.load.spritesheet('player', 'assets/spritesheets/SPRITE_CHAMPI.png', 128, 128, 50);
     this.game.load.spritesheet('thorn', 'assets/spritesheets/RoncesFusionner02.png',64,64,6);
     this.game.load.audio('jump', 'assets/audio/jump.wav');
     this.game.load.audio('walk', 'assets/audio/walk.mp3')
@@ -82,7 +81,6 @@ class Game extends Phaser.State {
 
     this.game.camera.follow(this.player);
     this.game.add.sprite(this.player);
-    this.paulsBullshit();
     var style = { font: "15px Arial", fill: "#ffffff", align: "center" };
     this.text = game.add.text(15, 15, "Energy: 0", style);
     this.text.fixedToCamera = true;
@@ -101,7 +99,7 @@ class Game extends Phaser.State {
     this.bg3.x= this.game.camera.x*0.1;
   }
   render(){
-    
+
     for(var i in this.objects){
       this.game.debug.body(this.objects[i]);
     }
@@ -117,7 +115,7 @@ class Game extends Phaser.State {
     const constX = 0;
     const xcam = jeuX-constX;
     const deltaX = xpar-xcam;
-    const perCamX = 1-((xcam-xnow)/xcam); 
+    const perCamX = 1-((xcam-xnow)/xcam);
     return -(deltaX*perCamX);
 
   }
@@ -126,7 +124,7 @@ class Game extends Phaser.State {
     const constY = 0;
     const ycam = jeuY-constY;
     const deltaY = ypar-ycam;
-    const perCamY = 1-((ycam-ynow)/ycam); 
+    const perCamY = 1-((ycam-ynow)/ycam);
     return -(deltaY*perCamY);
 
   }
