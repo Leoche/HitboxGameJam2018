@@ -121,7 +121,7 @@ class Game extends Phaser.State {
   }
   update() {
     var that = this;
-    this.player.touchingChamp = false;
+    this.player.touchingChampTop = false;
     this.game.physics.arcade.collide(this.player, this.colliderlayer);
     this.bg1.tilePosition.set(-this.game.camera.x/4, -this.game.camera.y/4);
     this.bg2.tilePosition.set(-this.game.camera.x/3, -this.game.camera.y/3);
@@ -131,8 +131,8 @@ class Game extends Phaser.State {
     if(this.distanceBetweenPoints(this.player, this.end) < 64){
       game.state.start(this.end.next);
     }
-    this.game.physics.arcade.collide(this.player, this.physicsGroup, function () {
-      that.player.touchingChamp = true;
+    this.game.physics.arcade.collide(this.player, this.physicsGroup, function (player, obj) {
+      that.player.touchingChampTop = (player.y + player.body.height >= obj.body.y) ;
     });
   }
   handleLeech() {

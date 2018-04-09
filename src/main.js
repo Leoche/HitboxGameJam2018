@@ -5,4 +5,4 @@ game.state.add('level1', new Game('ALIVE', "1"));
 game.state.add('level2', new Game('DEAD', "1"));
 game.state.add('credits', new Credits());
 
-game.state.start('menu');
+game.state.start('level1');

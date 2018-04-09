@@ -2,6 +2,7 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
   Phaser.Sprite.call(this, game, x, y);
 
   this.anchor.setTo(0.5, 1);
+  this.name = "champi";
   this.type = type;
   this.realWidth = this.width;
   this.realHeight = this.height;
