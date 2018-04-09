@@ -10,7 +10,7 @@ Jeu réalisé en moins de 48h lors du concours de création de jeux [Hitbox Make
 ## Lancement local
 
 1. Lancez `server_windows.exe` ou `server_linux` selon si votre OS est Windows ou Linux
-2. Accèdez à http://127.168.0.0:8080/index.html ou [Cliquez ici](http://127.168.0.0:8080/index.html)
+2. Accèdez à http://127.168.0.1:8080/index.html ou [Cliquez ici](http://127.168.0.1:8080/index.html)
 
 ## Jouer en ligne
 
