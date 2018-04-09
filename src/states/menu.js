@@ -26,6 +26,6 @@ class Menu extends Phaser.State {
     this.game.state.start('level1');
   }
   startCredits() {
-    this.game.state.start('menu');
+    this.game.state.start('credits');
   }
 }
