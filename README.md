@@ -27,8 +27,8 @@ Jeu réalisé en moins de 48h lors du concours de création de jeux [Hitbox Make
 
 #### Développeurs
 
-- Desigaux Léo
-- Moulard Paul
+- Desigaux Léo - @Leoche
+- Moulard Paul - @esunea
 
 
 <p align="center">
