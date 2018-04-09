@@ -6,12 +6,12 @@ class Credits extends Phaser.State {
 
  preload() {
 
-  this.game.load.image('background', 'assets/images/CREDITS_2.jpg');
-  this.game.load.spritesheet('buttonBack', 'assets/images/BOUTONS_BACK.png',256,256,2);
+  this.game.load.image('background', 'assets/images/UI/CREDITS.jpg');
+  this.game.load.spritesheet('buttonBack', 'assets/images/UI/BOUTONS_BACK.png',256,256,2);
 }
 
 create() {
-  
+
   this.background = this.game.add.image(0,0,'background');
 
   this.button2 = game.add.button(10, 630, 'buttonBack', this._startGame, this, 2, 1, 0);

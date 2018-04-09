@@ -6,10 +6,10 @@ class Menu extends Phaser.State {
 
  preload() {
 
-  this.game.load.image('background', 'assets/images/ILLU_START.png');
- 
-  this.game.load.spritesheet('buttonCredits', 'assets/images/BOUTONS_CREDITS.png',256,256,2);
-  this.game.load.spritesheet('buttonPlay', 'assets/images/BOUTONS_START.png',256,256,2);
+  this.game.load.image('background', 'assets/images/UI/START.png');
+
+  this.game.load.spritesheet('buttonCredits', 'assets/images/UI/BOUTONS_CREDITS.png',256,256,2);
+  this.game.load.spritesheet('buttonPlay', 'assets/images/UI/BOUTONS_START.png',256,256,2);
 
 }
 
@@ -39,7 +39,7 @@ customevent(){
 
 }
 _startGame () {
- this.game.state.start('game');
+ this.game.state.start('level1');
 }
 }
 

@@ -70,11 +70,11 @@ Player.prototype.update = function() {
         this.body.velocity.y = -700;
 
     }
-    if(this.body.onFloor() && Math.abs(this.body.velocity.x)+Math.abs(this.body.velocity.y<1)){
+    if(this.body.onFloor() && Math.abs(this.body.velocity.x)){
         this.animations.play('idle');
     }
 
-    this.anim();
+    //this.anim();
 
     /*Velocity*/
 
