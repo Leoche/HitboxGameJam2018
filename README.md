@@ -1,25 +1,36 @@
-# Basic-Phaser-Boilerplate
-Basic Phaser boilerplate without dependencies.
+<p align="center">
+	<img src="./assets/images/ILLU_START.png" alt="hitboxmakers" height="200">
+</p>
 
-## How to install
-Just git-clone/download this project in the folder you want and you are ready to go!
+# Mushroom in abyssal world
 
-## How to use
-You'll need a HTTPServer to test the project (all Phaser projects need one).
+Jeu réalisé en moins de 48h lors du concours de création de jeux [Hitbox Makers 2018](https://hitboxmakers.fr/) 
 
-If you are using Linux/macOS:
 
-1. Open your terminal.
-2. `cd where_your_project_folder_is`.
-3. `python -m SimpleHTTPServer 8000`.
-4. The project will start running in the browser on `localhost:8000`.
+## Lancement local
 
-If you are using Windows, ~~good luck!~~ there are software to simulate HTTPServers;
-you'll have to look for them, though. Try [stackoverflow!](https://stackoverflow.com/questions/5050851/best-lightweight-web-server-only-static-content-for-windows).
+1. Lancez `server_windows.exe` ou `server_linux` selon si votre OS est Windows ou Linux
+2. Accèdez à http://127.168.0.0:8080/index.html ou [Cliquez ici](http://127.168.0.0:8080/index.html)
 
-When you change the code, just refresh the browser page. Sometimes the browser will use
-the cached version of the page, so you'll have to refresh a couple of times more.
+## Jouer en ligne
 
-## Asset credits
-Dude: Phaser Mascot, https://phaser.io/
-Platform: Alucard (https://opengameart.org/content/platform-tiles-0), CC-BY
+// To do
+
+## Créateurs
+
+#### Graphistes
+
+- Masquilier Rémy
+- Lemoine Adrien
+- Hetroy Marion
+
+#### Développeurs
+
+- Desigaux Léo
+- Moulard Paul
+
+
+<p align="center">
+	<img src="https://hitboxmakers.fr/assets/images/Logo_HitBoxMakers.png" alt="hitboxmakers" height="100">
+	<img src="https://phaser.io/images/logo/logo-download.png" alt="Phaser logo" height="100">
+</p>
