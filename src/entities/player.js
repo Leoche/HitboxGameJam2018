@@ -6,7 +6,7 @@ Phaser.Sprite.call(this, game, x, y, 'player');
 
 this.isAlive = true;
 this.initialX = x;
-this.initialY = y;
+this.initialY = y-200;
 this.hasJumped = false;
 
 this.addSounds();
@@ -121,14 +121,13 @@ Player.prototype.update = function() {
   }
 
   Player.prototype.restart = function(){
-    //console.log(game.frameTotal);
     this.body.x = this.initialX;
     this.body.y = this.initialY;
     this.isAlive = true;
   }
 
   Player.prototype.key_gauche= function(){
-    if (this.body.onFloor)
+    if (this.body.onFloor || this.touchingChampTop)
     {
       this.body.velocity.x = -300;
     }

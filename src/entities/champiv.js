@@ -55,7 +55,7 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
 
   Champiv.prototype.interact = function() {
     this.interacting = true;
-    if(this.type == "down" && this.tigeHeight > 64) this.tigeHeight -= 5;
+    if(this.type == "down" && this.tigeHeight > this.tigeHeightMax - 64 * 4) this.tigeHeight -= 5;
     if(this.type == "up" && this.tigeHeight < this.tigeHeightMax+this.tigeHeightMax) this.tigeHeight += 5;
   }
   Champiv.prototype.update = function() {
@@ -68,8 +68,8 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
     this.sprites.getChildAt(2).y = -640 + 380 - this.tigeHeight;
     this.bringToTop();
     if(!this.interacting){
-      if(this.type == "up" && this.tigeHeight > this.tigeHeightMax) this.tigeHeight -= .8;
-      if(this.type == "down" && this.tigeHeight < this.tigeHeightMax) this.tigeHeight += .8;
+      if(this.type == "up" && this.tigeHeight > this.tigeHeightMax) this.tigeHeight -= 1;
+      if(this.type == "down" && this.tigeHeight < this.tigeHeightMax) this.tigeHeight += 1;
     }
     if(this.tinter){
       if(this.sprites.getChildAt(2).alpha != 1){

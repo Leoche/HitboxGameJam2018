@@ -128,7 +128,7 @@ class Game extends Phaser.State {
     this.bg3.tilePosition.set(-this.game.camera.x/2, -this.game.camera.y/2);
 
     this.handleLeech()
-    if(this.distanceBetweenPoints(this.player, this.end) < 64){
+    if(this.distanceBetweenPoints(this.player.body, this.end) < 64){
       game.state.start(this.end.next);
     }
     this.game.physics.arcade.collide(this.player, this.physicsGroup, function (player, obj) {
