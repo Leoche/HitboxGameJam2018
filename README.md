@@ -11,7 +11,7 @@ Jeu réalisé en moins de 48h lors du concours de création de jeux [Hitbox Make
 
 1. Téléchargez une [release](https://github.com/Leoche/HitboxGameJam2018/releases) en cliquant sur le bouton `zip` et l'extraire
 2. Lancez `server_windows.exe` ou `server_linux` selon si votre OS est Windows ou Linux
-3. Accedez à http://127.168.0.1:8080/index.html ou [Cliquez ici](http://127.168.0.1:8080/index.html)
+3. Accedez à http://127.168.0.1:8080/index.html
 
 ## Jouer en ligne
 
@@ -27,8 +27,8 @@ Jeu réalisé en moins de 48h lors du concours de création de jeux [Hitbox Make
 
 #### Développeurs
 
-- Desigaux Léo - @Leoche
-- Moulard Paul - @esunea
+- Desigaux Léo - [@Leoche](https://github.com/Leoche)
+- Moulard Paul - [@esunea](https://github.com/esunea)
 
 
 <p align="center">
