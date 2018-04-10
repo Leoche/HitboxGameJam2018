@@ -23,7 +23,7 @@ class Menu extends Phaser.State {
     this.button2.anchor.set(0,1);
   }
   startGame() {
-    this.game.state.start('level1');
+    this.game.state.start('ALIVE_0');
   }
   startCredits() {
     this.game.state.start('credits');

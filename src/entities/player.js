@@ -8,6 +8,7 @@ this.isAlive = true;
 this.initialX = x;
 this.initialY = y-200;
 this.hasJumped = false;
+this.lockedTo = null;
 
 this.addSounds();
 this.game = game;
@@ -36,6 +37,7 @@ this.touchingChampTop = false;
 this.tint = 0xFFFFFF;
 
 game.add.existing(this);
+game.world.bringToTop(this);
 
 };
 
@@ -43,7 +45,6 @@ game.add.existing(this);
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 Player.prototype.update = function() {
-
   if(this.isAlive){
 
     if(game.input.keyboard.isDown(87) && (this.body.onFloor())){
@@ -69,15 +70,15 @@ Player.prototype.update = function() {
     }
     /* up*/
     if(game.input.keyboard.isDown(90)){
-        if(!this.hasJumped && (this.body.onFloor() || this.touchingChampTop)){
+        if(!this.hasJumped && (this.body.onFloor() || this.lockedTo != null)){
           this.hasJumped = true;
           this.body.velocity.y = -700;
           this.fxJump.play('jump');
+          this.lockedTo == null;
       }
-    }else if(this.body.onFloor() || this.touchingChampTop){
+    }else if(this.body.onFloor() || this.lockedTo != null){
       this.hasJumped = false;
     }
-
     this.anim();
 
     /*Velocity*/
@@ -85,9 +86,18 @@ Player.prototype.update = function() {
 
     this.game.physics.arcade.collideSpriteVsTilemapLayer(this, this.colliders);
 
-    this.game.physics.arcade.overlap(this, this.ronceGroup, this.collisionHandler, null, this);
+    if(this.lockedTo != null) {
+      if(this.body.right < this.lockedTo.body.x ||
+         this.body.x > this.lockedTo.body.right ||
+         Math.abs(this.body.y + this.body.height - this.lockedTo.body.y) > 50){
+        this.lockedTo = null;
+      } else if(!this.hasJumped){
+        this.body.y = this.lockedTo.body.y - this.body.height;
+      }
+    }
   }else{
-    this.tint = 0x660000;
+    this.tint = 0x996666;
+    this.body.velocity.x = 0;
     if(this.frame < 40) this.animations.play('die',5,false);
   }
     if(game.input.keyboard.isDown(82)){
@@ -123,7 +133,9 @@ Player.prototype.update = function() {
   Player.prototype.restart = function(){
     this.body.x = this.initialX;
     this.body.y = this.initialY;
+    this.body.velocity.y = 0;
     this.isAlive = true;
+    this.tint = 0xFFFFFF;
   }
 
   Player.prototype.key_gauche= function(){
@@ -144,7 +156,7 @@ Player.prototype.update = function() {
   }
 
   Player.prototype.anim= function(){
-    if(this.body.onFloor() || this.touchingChampTop && this.body.velocity.y <=0){
+    if(this.body.onFloor() || this.lockedTo != null){
       if(Math.abs(this.body.velocity.x) < 1){
         this.animations.play('idle', 10, true);
       } else if(Math.abs(this.body.velocity.x) < 400){

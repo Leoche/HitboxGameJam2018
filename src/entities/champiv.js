@@ -15,7 +15,7 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
 
 
   game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 80, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200- this.tigeHeight);
+    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 20, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200- this.tigeHeight);
     this.body.allowGravity = false;
     this.body.immovable = true;
     this.body.checkCollision.down = false;
@@ -48,6 +48,7 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
     this.sprites.getChildAt(0).crop(this.cropRect);
     this.interacting = false;
     game.add.existing(this);
+    game.world.bringToTop(this);
   };
 
   Champiv.prototype = Object.create(Phaser.Sprite.prototype);
@@ -55,12 +56,12 @@ var Champiv = function (game, x, y, type, tigeHeight, chapeauWidth) {
 
   Champiv.prototype.interact = function() {
     this.interacting = true;
-    if(this.type == "down" && this.tigeHeight > this.tigeHeightMax - 64 * 4) this.tigeHeight -= 5;
+    if(this.type == "down" && this.tigeHeight > this.tigeHeightMax - 64 * 4 && this.tigeHeight > 0) this.tigeHeight -= 5;
     if(this.type == "up" && this.tigeHeight < this.tigeHeightMax+this.tigeHeightMax) this.tigeHeight += 5;
   }
   Champiv.prototype.update = function() {
     this.cropRect.height = this.tigeHeight;
-    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 80, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200 - this.tigeHeight);
+    this.body.setSize(this.chapeauWidth + this.chapeauCollisionOffsetX, 20, this.chapeauCollisionOffsetX*this.chapeauWidthTile - this.chapeauWidth / 2, -200 - this.tigeHeight);
 
     this.sprites.getChildAt(0).updateCrop();
     this.sprites.getChildAt(0).y = -110 - this.tigeHeight;

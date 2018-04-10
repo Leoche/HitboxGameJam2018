@@ -31,7 +31,7 @@ class Game extends Phaser.State {
     this.game.load.audio('echoPas','assets/audio/echopas.wav');
   }
   create() {
-
+    this.debug = false;
     this.fxAmb2 = this.game.add.audio('ambiance1');
     this.fxAmb2.loop = true;
     this.fxAmb2.play();
@@ -54,9 +54,9 @@ class Game extends Phaser.State {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = 600;
 
+
     this.champis = [];
-    this.ronceGroup = this.game.add.physicsGroup()
-    this.physicsGroup = game.add.physicsGroup();
+    this.champiGroup = this.game.add.physicsGroup();
 
     this.map = this.game.add.tilemap('level1', 64, 64);
     this.map.addTilesetImage('terrain','terrain');
@@ -70,6 +70,9 @@ class Game extends Phaser.State {
     this.layerover.resizeWorld();
 
     this.map.setCollision(6, true, this.colliderlayer);
+
+    this.ronces = [];
+    this.ronceGroup = this.game.add.physicsGroup()
 
     this.end = {x:0, y:0};
     this.objectsAdded = {
@@ -85,35 +88,36 @@ class Game extends Phaser.State {
         this.player = new Player(game, obj.x, obj.y, this.colliderlayer, this.champis);
       } else if (obj.type === "champiv") {
         this.objectsAdded.champis++;
+        if(!obj.properties || !obj.properties.sens) alert("Tiled erreur: un champi n'a pas de propriete: sens");
+        if(!obj.properties || !obj.properties.height) alert("Tiled erreur: un champi n'a pas de propriete: height");
+        if(!obj.properties || !obj.properties.chapeau) alert("Tiled erreur: un champi n'a pas de propriete: chapeau");
         var newChamp = new Champiv(game, obj.x, obj.y, obj.properties.sens, obj.properties.height, obj.properties.chapeau);
+        this.champiGroup.add(newChamp);
         this.champis.push(newChamp);
-        this.objects.push(newChamp);
-        this.physicsGroup.add(newChamp);
       }
       else if (obj.type === "ronce"){
         this.objectsAdded.ronces++;
-        var newThorn = new Thorn(game, obj.x, obj.y);
-        this.objects.push(newThorn);
-        this.physicsGroup.add(newThorn);
+        if(!obj.properties || !obj.properties.sens) alert("Tiled erreur: une ronce n'a pas de propriete: sens");
+        var newThorn = new Thorn(game, obj.x, obj.y, obj.properties.sens || 0, obj.properties.start);
+        this.ronceGroup.add(newThorn);
+        this.ronces.push(newThorn);
       }
       else if (obj.name === "end"){
         this.objectsAdded.end++;
         this.end.x = obj.x;
         this.end.y = obj.y;
+        if(!obj.properties || !obj.properties.next) alert("Tiled erreur: un end n'a pas de propriete: next");
         this.end.next = obj.properties.next;
       }
     }
+    if(this.objectsAdded.player ===0) alert("Tiled erreur: pas de player dans le niveau");
     console.log("Initialised world '" +this.levelType + "_" + this.levelNumber + ".json' with \n",
       this.objectsAdded.player + " player, ",
       this.objectsAdded.champis + " champis, ",
       this.objectsAdded.ronces + " ronces, ",
       this.objectsAdded.end + " end");
 
-    this.thorn = new Thorn(game, 500, 1088);
-    this.ronceGroup.add(this.thorn);
-
     this.game.camera.follow(this.player);
-    this.game.add.sprite(this.player);
     var style = { font: "1px Arial", fill: "#ffffff", align: "center" };
     this.text = game.add.text(15, 15, "Energy: 0", style);
     this.text.fixedToCamera = true;
@@ -131,9 +135,21 @@ class Game extends Phaser.State {
     if(this.distanceBetweenPoints(this.player.body, this.end) < 64){
       game.state.start(this.end.next);
     }
-    this.game.physics.arcade.collide(this.player, this.physicsGroup, function (player, obj) {
+    this.game.physics.arcade.collide(this.player, this.champiGroup, function (player, obj) {
       that.player.touchingChampTop = (player.y + player.body.height >= obj.body.y) ;
-    });
+      if(player.lockedTo === null && this.player.body.touching.down && this.player.body.velocity.y < 0 ){
+        player.lockedTo = obj;
+        if(!this.player.hasJumped){
+          this.player.body.velocity.y = 0;
+        }
+        this.player.hasJumped = false;
+      }
+    }, null, this);
+    this.game.physics.arcade.overlap(this.player, this.ronceGroup, function(player, obj) {
+      player.isAlive = false;
+    }, null, this);
+    if(game.input.keyboard.isDown(89)) this.debug = true;
+
   }
   handleLeech() {
     if(this.findNearest()){
@@ -142,9 +158,6 @@ class Game extends Phaser.State {
       if(game.input.keyboard.isDown(77)){
         nearest.interact();
         var that = this;
-        this.game.physics.arcade.collide(this.physicsGroup, this.player, function(){
-          that.player.body.y+=5;
-        });
       }
     }
   }
@@ -165,10 +178,14 @@ class Game extends Phaser.State {
     return Math.abs(Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)));
   }
   render(){
-    return;
-    this.game.debug.body(this.player);
-    for(var i in this.objects){
-      this.game.debug.body(this.objects[i]);
+    if(this.debug){
+      this.game.debug.body(this.player);
+      for(var i in this.champis){
+        this.game.debug.body(this.champis[i]);
+      }
+      for(var i in this.ronces){
+        this.game.debug.body(this.ronces[i]);
+      }
     }
   }
 }
