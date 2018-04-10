@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./assets/images/ILLU_START.png" alt="hitboxmakers" height="200">
+	<img src="./assets/images/UI/START.png" alt="hitboxmakers" height="200">
 </p>
 
 # Mushroom in abyssal world
