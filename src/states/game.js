@@ -31,6 +31,12 @@ class Game extends Phaser.State {
     this.game.load.audio('echoPas','assets/audio/echopas.wav');
   }
   create() {
+    var that = this;
+    this.padEnabled = false;
+
+    game.input.gamepad.start();
+    this.pad = game.input.gamepad.pad1;
+
     this.debug = false;
     this.fxAmb2 = this.game.add.audio('ambiance1');
     this.fxAmb2.loop = true;
@@ -125,6 +131,24 @@ class Game extends Phaser.State {
   }
   update() {
     var that = this;
+    if(!this.pad){
+      this.game.controls = {
+        left:that.game.input.keyboard.isDown(81),
+        right:that.game.input.keyboard.isDown(68),
+        up:that.game.input.keyboard.isDown(90),
+        power:that.game.input.keyboard.isDown(77),
+        restart:that.game.input.keyboard.isDown(82)
+      }
+    }else{
+      this.game.controls = {
+        left:this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1,
+        right:this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1,
+        up:this.pad.isDown(Phaser.Gamepad.XBOX360_A),
+        power:this.pad.isDown(Phaser.Gamepad.XBOX360_X),
+        restart:this.pad.isDown(Phaser.Gamepad.XBOX360_Y)
+      }
+    }
+    var that = this;
     this.player.touchingChampTop = false;
     this.game.physics.arcade.collide(this.player, this.colliderlayer);
     this.bg1.tilePosition.set(-this.game.camera.x/4, -this.game.camera.y/4);
@@ -149,13 +173,12 @@ class Game extends Phaser.State {
       player.isAlive = false;
     }, null, this);
     if(game.input.keyboard.isDown(89)) this.debug = true;
-
   }
   handleLeech() {
     if(this.findNearest()){
       var nearest = this.findNearest()
       nearest.tinter = true;
-      if(game.input.keyboard.isDown(77)){
+      if(this.game.controls.power){
         nearest.interact();
         var that = this;
       }

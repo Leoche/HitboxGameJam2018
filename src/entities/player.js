@@ -46,30 +46,17 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 Player.prototype.update = function() {
   if(this.isAlive){
-
-    if(game.input.keyboard.isDown(87) && (this.body.onFloor())){
-      this.energy += 2;
-      if(this.energy > 100){
-        this.energy = 100;
-      }
-    }
-    else{
-      this.energy -= 0.5;
-      if(this.energy < 0){
-        this.energy = 0;
-      }
-    }
-    if(game.input.keyboard.isDown(81)){
+    if(this.game.controls.left){
       this.key_gauche();
     }
-    else if(game.input.keyboard.isDown(68)){
+    else if(this.game.controls.right){
       this.key_droite();
     }
     else{
       this.body.velocity.x = 0;
     }
     /* up*/
-    if(game.input.keyboard.isDown(90)){
+    if(this.game.controls.up){
         if(!this.hasJumped && (this.body.onFloor() || this.lockedTo != null)){
           this.hasJumped = true;
           this.body.velocity.y = -700;
@@ -100,7 +87,7 @@ Player.prototype.update = function() {
     this.body.velocity.x = 0;
     if(this.frame < 40) this.animations.play('die',5,false);
   }
-    if(game.input.keyboard.isDown(82)){
+    if(this.game.controls.restart){
       this.restart();
     }
 
